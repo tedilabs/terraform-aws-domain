@@ -25,5 +25,11 @@ output "vpc_associations" {
 
 output "authorized_cross_account_vpc_associations" {
   description = "A list of authorized VPCs in cross accounts to associate with a private Hosted Zone."
-  value       = values(aws_route53_vpc_association_authorization.this)
+  value       = [
+    for authorization in values(aws_route53_vpc_association_authorization.this):
+    {
+      vpc_region = authorization.vpc_region,
+      vpc_id     = authorization.vpc_id,
+    }
+  ]
 }
