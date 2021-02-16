@@ -15,7 +15,7 @@ variable "force_destroy" {
   default     = false
 }
 
-variable "cross_account_vpc_associations" {
+variable "authorized_cross_account_vpc_associations" {
   description = "Authorizes a VPC in a peer account to be associated with a local Route53 Hosted Zone. `vpc_id` is required to authorize for association with the private Hosted Zone. `vpc_region` is optional. Defaults to the region of the AWS provider."
   type        = list(map(string))
   default     = []

@@ -23,7 +23,7 @@ output "vpc_associations" {
   value       = aws_route53_zone.private.vpc
 }
 
-output "cross_account_vpc_associations" {
+output "authorized_cross_account_vpc_associations" {
   description = "A list of authorized VPCs in cross accounts to associate with a private Hosted Zone."
   value       = values(aws_route53_vpc_association_authorization.this)
 }
