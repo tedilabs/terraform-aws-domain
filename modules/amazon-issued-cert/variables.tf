@@ -21,6 +21,18 @@ variable "validation_method" {
   default     = "DNS"
 }
 
+variable "validation_dns_managed" {
+  description = "Specifies whether validation should be managed by the module when `validation_method` is `DNS`."
+  type        = bool
+  default     = false
+}
+
+variable "validation_dns_managed_zones" {
+  description = "List of Hosted Zones to automatically manage the records for DNS validation as a map. The key is the name of Hosted Zone. The value is the ID of Hosted Zone."
+  type        = map(string)
+  default     = {}
+}
+
 variable "certificate_transparency_logging_enabled" {
   description = "Specifies whether certificate details should be added to a certificate transparency log."
   type        = bool

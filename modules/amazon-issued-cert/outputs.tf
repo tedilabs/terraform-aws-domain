@@ -5,7 +5,7 @@ output "name" {
 
 output "arn" {
   description = "The ARN of the certificate."
-  value       = aws_acm_certificate.this.arn
+  value       = var.validation_dns_managed ? aws_acm_certificate_validation.this[0].certificate_arn : aws_acm_certificate.this.arn
 }
 
 output "status" {

@@ -27,6 +27,8 @@ This module creates following resources.
 | name | The name of the certificate. | `string` | `""` | no |
 | subject\_alternative\_names | List of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list (`[]`) or use the `terraform taint` command to trigger recreation. | `list(string)` | `[]` | no |
 | tags | A map of tags to add to all resources. | `map(string)` | `{}` | no |
+| validation\_dns\_managed | Specifies whether validation should be managed by the module when `validation_method` is `DNS`. | `bool` | `false` | no |
+| validation\_dns\_managed\_zones | List of Hosted Zones to automatically manage the records for DNS validation as a map. The key is the name of Hosted Zone. The value is the ID of Hosted Zone. | `map(string)` | `{}` | no |
 | validation\_method | Which method to use for validation. `DNS` or `EMAIL` are valid, `NONE` can be used for certificates that were imported into ACM and then into Terraform. | `string` | `"DNS"` | no |
 
 ## Outputs
