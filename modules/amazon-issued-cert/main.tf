@@ -30,8 +30,8 @@ locals {
 
   validation_dns_managed = var.validation_method == "DNS" && var.validation_dns_managed
   validation_domain_records = {
-    for record in aws_acm_certificate.this.domain_validation_options:
-      record.domain_name => record
+    for record in aws_acm_certificate.this.domain_validation_options :
+    record.domain_name => record
   }
 }
 

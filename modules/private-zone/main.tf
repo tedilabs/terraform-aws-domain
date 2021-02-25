@@ -30,8 +30,8 @@ resource "aws_route53_zone" "private" {
 
 resource "aws_route53_vpc_association_authorization" "this" {
   for_each = {
-    for vpc_association in var.authorized_cross_account_vpc_associations:
-      vpc_association.vpc_id => vpc_association
+    for vpc_association in var.authorized_cross_account_vpc_associations :
+    vpc_association.vpc_id => vpc_association
   }
 
   zone_id = aws_route53_zone.private.zone_id
