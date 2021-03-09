@@ -1,7 +1,8 @@
 # terraform-aws-domain
 
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/tedilabs/terraform-aws-domain?color=blue&sort=semver&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/tedilabs/terraform-aws-domain?color=blue&style=flat-square)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square)](https://github.com/pre-commit/pre-commit)
 
 Terraform module which creates Route53 related resources on AWS.
 
