@@ -10,13 +10,13 @@ This module creates following resources.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| aws | >= 3.30 |
+| aws | >= 3.34 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.30 |
+| aws | >= 3.34 |
 
 ## Inputs
 
@@ -42,8 +42,6 @@ This module creates following resources.
 | arn | The ARN of the certificate. |
 | certificate\_transparency\_logging\_enabled | Whether or not the certificate transparency logging is enabled. |
 | name | The name of the certificate. |
-| resource\_group\_enabled | Whether Resource Group is enabled. |
-| resource\_group\_name | The name of Resource Group. |
 | status | Status of the certificate. |
 | subject\_alternative\_names | List of domains that is SANs in the issued certificate. |
 | subject\_name | The domain name for which the certificate is issued. |

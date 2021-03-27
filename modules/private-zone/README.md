@@ -11,13 +11,13 @@ This module creates following resources.
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| aws | >= 3.30 |
+| aws | >= 3.34 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 3.30 |
+| aws | >= 3.34 |
 
 ## Inputs
 
@@ -42,8 +42,6 @@ This module creates following resources.
 | id | The Hosted Zone ID. This can be referenced by zone records. |
 | name | The name of the Hosted Zone. |
 | name\_servers | A list of name servers in associated (or default) delegation set. |
-| resource\_group\_enabled | Whether Resource Group is enabled. |
-| resource\_group\_name | The name of Resource Group. |
 | vpc\_associations | A list of associated VPCs with a private Hosted Zone. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

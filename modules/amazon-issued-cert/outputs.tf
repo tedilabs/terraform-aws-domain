@@ -42,18 +42,3 @@ output "validation_emails" {
   description = "A list of addresses that received a validation E-Mail. Only set if `EMAIL` validation was used."
   value       = aws_acm_certificate.this.validation_emails
 }
-
-
-###################################################
-# Resource Group
-###################################################
-
-output "resource_group_enabled" {
-  description = "Whether Resource Group is enabled."
-  value       = var.resource_group_enabled
-}
-
-output "resource_group_name" {
-  description = "The name of Resource Group."
-  value       = try(aws_resourcegroups_group.this.*.name[0], null)
-}
