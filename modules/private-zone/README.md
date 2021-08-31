@@ -10,14 +10,14 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.42 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.56 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.42 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.56.0 |
 
 ## Modules
 
@@ -51,6 +51,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_arn"></a> [arn](#output\_arn) | The Amazon Resource Name (ARN) of the Hosted Zone. |
 | <a name="output_authorized_cross_account_vpc_associations"></a> [authorized\_cross\_account\_vpc\_associations](#output\_authorized\_cross\_account\_vpc\_associations) | A list of authorized VPCs in cross accounts to associate with a private Hosted Zone. |
 | <a name="output_comment"></a> [comment](#output\_comment) | A comment for the Hosted Zone. |
 | <a name="output_id"></a> [id](#output\_id) | The Hosted Zone ID. This can be referenced by zone records. |

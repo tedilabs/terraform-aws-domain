@@ -1,3 +1,8 @@
+output "arn" {
+  description = "The Amazon Resource Name (ARN) of the Hosted Zone."
+  value       = aws_route53_zone.public.arn
+}
+
 output "id" {
   description = "The Hosted Zone ID. This can be referenced by zone records."
   value       = aws_route53_zone.public.id
