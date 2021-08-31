@@ -3,7 +3,7 @@ locals {
     package = "terraform-aws-domain"
     version = trimspace(file("${path.module}/../../VERSION"))
     module  = basename(path.module)
-    name    = var.name
+    name    = "${var.namespace}/${var.name}"
   }
   module_tags = var.module_tags_enabled ? {
     "module.terraform.io/package"   = local.metadata.package
@@ -14,7 +14,6 @@ locals {
   } : {}
 }
 
-data "aws_region" "this" {}
 data "aws_vpc" "default" { default = true }
 
 resource "aws_route53_zone" "private" {
@@ -23,8 +22,8 @@ resource "aws_route53_zone" "private" {
   force_destroy = var.force_destroy
 
   vpc {
-    vpc_region = data.aws_region.this.name
-    vpc_id     = data.aws_vpc.default.id
+    vpc_region = try(var.primary_vpc_association.region, null)
+    vpc_id     = try(var.primary_vpc_association.vpc_id, data.aws_vpc.default.id)
   }
 
   tags = merge(
@@ -42,7 +41,7 @@ resource "aws_route53_zone" "private" {
 
 
 ###################################################
-# VPC Associations
+# Authorizations for VPC Associations
 ###################################################
 
 resource "aws_route53_vpc_association_authorization" "this" {
@@ -53,6 +52,27 @@ resource "aws_route53_vpc_association_authorization" "this" {
 
   zone_id = aws_route53_zone.private.zone_id
 
-  vpc_region = lookup(each.value, "vpc_region", data.aws_region.this.name)
+  vpc_region = try(each.value.region, null)
   vpc_id     = each.value.vpc_id
+}
+
+
+###################################################
+# VPC Associations
+###################################################
+
+resource "aws_route53_zone_association" "secondary" {
+  for_each = {
+    for vpc_association in var.secondary_vpc_associations :
+    vpc_association.vpc_id => vpc_association
+  }
+
+  zone_id = aws_route53_zone.private.zone_id
+
+  vpc_region = try(each.value.region, null)
+  vpc_id     = each.value.vpc_id
+
+  depends_on = [
+    aws_route53_vpc_association_authorization.this
+  ]
 }

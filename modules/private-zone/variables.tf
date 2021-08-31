@@ -3,6 +3,12 @@ variable "name" {
   type        = string
 }
 
+variable "namespace" {
+  description = "The namespace of the Hosted Zone. Just for categorising overlapped hosted zones."
+  type        = string
+  default     = "default"
+}
+
 variable "comment" {
   description = "A comment for the Hosted Zone."
   type        = string
@@ -16,7 +22,19 @@ variable "force_destroy" {
 }
 
 variable "authorized_cross_account_vpc_associations" {
-  description = "Authorizes a VPC in a peer account to be associated with a local Route53 Hosted Zone. `vpc_id` is required to authorize for association with the private Hosted Zone. `vpc_region` is optional. Defaults to the region of the AWS provider."
+  description = "Authorizes a VPC in a peer account to be associated with a local Route53 Hosted Zone. `vpc_id` is required to authorize for association with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
+  type        = list(map(string))
+  default     = []
+}
+
+variable "primary_vpc_association" {
+  description = "The Primary VPC to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
+  type        = map(string)
+  default     = {}
+}
+
+variable "secondary_vpc_associations" {
+  description = "A list of secondary VPCs to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
   type        = list(map(string))
   default     = []
 }
