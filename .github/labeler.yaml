@@ -1,0 +1,18 @@
+# Modules
+":floppy_disk: amazon-issued-cert":
+- modules/amazon-issued-cert/**/*
+
+":floppy_disk: private-ca-issued-cert":
+- modules/private-ca-issued-cert/**/*
+
+":floppy_disk: private-zone":
+- modules/private-zone/**/*
+
+":floppy_disk: public-zone":
+- modules/public-zone/**/*
+
+":floppy_disk: resolver-inbound-endpoint":
+- modules/resolver-inbound-endpoint/**/*
+
+":floppy_disk: resolver-query-logging":
+- modules/resolver-query-logging/**/*
