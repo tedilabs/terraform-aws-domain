@@ -5,6 +5,7 @@ This module creates following resources.
 - `aws_route53_zone`
 - `aws_route53_zone_vpc_association` (optional)
 - `aws_route53_vpc_association_authorization` (optional)
+- `aws_vpc` (optional)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
