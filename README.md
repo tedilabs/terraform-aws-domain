@@ -7,6 +7,23 @@
 Terraform module which creates Route53 related resources on AWS.
 
 
+## Target AWS Services
+
+Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-domain) were written to manage the following AWS Services with Terraform.
+
+- **Route53**
+  - Hosted Zone
+    - Public Hosted Zone
+    - Private Hosted Zone
+  - Resolver
+    - Inbound Endpoint
+    - Outbound Endpoint (comming soon!)
+    - Query Logging Configuration
+- **ACM (AWS Certificate Manager)**
+  - Amazon issued Certificate
+  - Private CA issued Certificate
+
+
 ## Self Promotion
 
 Like this project? Follow the repository on [GitHub](https://github.com/tedilabs/terraform-aws-domain). And if you're feeling especially charitable, follow **[posquit0](https://github.com/posquit0)** on GitHub.
