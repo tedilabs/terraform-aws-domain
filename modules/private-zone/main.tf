@@ -15,20 +15,6 @@ locals {
 }
 
 
-resource "aws_vpc" "dummy" {
-  count = try(var.primary_vpc_association.vpc_id, null) != null ? 0 : 1
-
-  cidr_block = "10.0.0.0/16"
-
-  tags = merge(
-    {
-      "Name" = "route53/${local.metadata.name}"
-    },
-    local.module_tags,
-    var.tags,
-  )
-}
-
 resource "aws_route53_zone" "private" {
   name          = var.name
   comment       = var.comment
@@ -36,7 +22,7 @@ resource "aws_route53_zone" "private" {
 
   vpc {
     vpc_region = try(var.primary_vpc_association.region, null)
-    vpc_id     = try(var.primary_vpc_association.vpc_id, aws_vpc.dummy[0].id, null)
+    vpc_id     = var.primary_vpc_association.vpc_id
   }
 
   tags = merge(

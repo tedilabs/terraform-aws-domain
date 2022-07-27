@@ -32,7 +32,11 @@ variable "authorized_cross_account_vpc_associations" {
 }
 
 variable "primary_vpc_association" {
-  description = "(Optional) The Primary VPC to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
+  description = <<EOF
+  (Required) The Primary VPC to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider. `primary_vpc_association` block as defined below.
+    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.
+    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider.
+  EOF
   type        = map(string)
   default     = {}
   nullable    = false
