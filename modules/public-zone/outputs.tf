@@ -13,6 +13,11 @@ output "name" {
   value       = aws_route53_zone.public.name
 }
 
+output "namespace" {
+  description = "The namespace of the Hosted Zone."
+  value       = var.namespace
+}
+
 output "comment" {
   description = "A comment for the Hosted Zone."
   value       = aws_route53_zone.public.comment
