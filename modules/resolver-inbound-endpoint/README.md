@@ -11,26 +11,26 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.56 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.22 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.56.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.23.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_security_group__this"></a> [security\_group\_\_this](#module\_security\_group\_\_this) | tedilabs/network/aws//modules/security-group | 0.20.0 |
+| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.10.0 |
+| <a name="module_security_group__this"></a> [security\_group\_\_this](#module\_security\_group\_\_this) | tedilabs/network/aws//modules/security-group | ~> 0.26.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_resourcegroups_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/resourcegroups_group) | resource |
 | [aws_route53_resolver_endpoint.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_endpoint) | resource |
 | [aws_subnet.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnet) | data source |
 
@@ -38,15 +38,15 @@ This module creates following resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ip_allocations"></a> [ip\_allocations](#input\_ip\_allocations) | A list of IP allocations which include `subnet_id` and `ip`. `ip` is a private IP from `subnet`. | <pre>list(object({<br>    subnet_id = string<br>    ip        = string<br>  }))</pre> | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | The name of the Route53 Resolver Inbound Endpoint. | `string` | n/a | yes |
-| <a name="input_allowed_ingress_cidrs"></a> [allowed\_ingress\_cidrs](#input\_allowed\_ingress\_cidrs) | A list of CIDR for Route53 Resolver Inbound Endpoint ingress access. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
-| <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
-| <a name="input_resource_group_description"></a> [resource\_group\_description](#input\_resource\_group\_description) | The description of Resource Group. | `string` | `"Managed by Terraform."` | no |
-| <a name="input_resource_group_enabled"></a> [resource\_group\_enabled](#input\_resource\_group\_enabled) | Whether to create Resource Group to find and group AWS resources which are created by this module. | `bool` | `true` | no |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. | `string` | `""` | no |
-| <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | A list of security groups for Route53 Resolver Inbound Endpoint. | `list(string)` | `[]` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources. | `map(string)` | `{}` | no |
+| <a name="input_ip_allocations"></a> [ip\_allocations](#input\_ip\_allocations) | (Required) A list of IP allocations which include `subnet_id` and `ip`. `ip` is a private IP from `subnet`. | <pre>list(object({<br>    subnet_id = string<br>    ip        = string<br>  }))</pre> | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Route53 Resolver Inbound Endpoint. | `string` | n/a | yes |
+| <a name="input_allowed_ingress_cidrs"></a> [allowed\_ingress\_cidrs](#input\_allowed\_ingress\_cidrs) | (Optional) A list of CIDR for Route53 Resolver Inbound Endpoint ingress access. | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
+| <a name="input_resource_group_description"></a> [resource\_group\_description](#input\_resource\_group\_description) | (Optional) The description of Resource Group. | `string` | `"Managed by Terraform."` | no |
+| <a name="input_resource_group_enabled"></a> [resource\_group\_enabled](#input\_resource\_group\_enabled) | (Optional) Whether to create Resource Group to find and group AWS resources which are created by this module. | `bool` | `true` | no |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | (Optional) The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. | `string` | `""` | no |
+| <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | (Optional) A list of security groups for Route53 Resolver Inbound Endpoint. | `list(string)` | `[]` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
 
