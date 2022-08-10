@@ -29,3 +29,16 @@ resource "aws_route53_zone" "public" {
     var.tags,
   )
 }
+
+
+###################################################
+# Query Logging for Public Hosted Zone
+###################################################
+
+resource "aws_route53_query_log" "this" {
+  count = var.logging_cloudwatch_enabled ? 1 : 0
+
+  zone_id = aws_route53_zone.public.zone_id
+
+  cloudwatch_log_group_arn = var.logging_cloudwatch_log_group
+}

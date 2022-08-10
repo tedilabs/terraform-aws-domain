@@ -30,6 +30,20 @@ variable "delegation_set_id" {
   default     = null
 }
 
+variable "logging_cloudwatch_enabled" {
+  description = "(Optional) Indicates whether you want to enable or disable Route53 query logging. The CloudWatch log group must be in the `us-east-1` region. A permissive CloudWatch log resource policy must be in place."
+  type        = bool
+  default     = false
+  nullable    = false
+}
+
+variable "logging_cloudwatch_log_group" {
+  description = "(Optional) The ARN of log group on CloudWatch Logs to deliver logs to."
+  type        = string
+  default     = ""
+  nullable    = false
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to add to all resources."
   type        = map(string)
