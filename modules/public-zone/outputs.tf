@@ -32,3 +32,16 @@ output "delegation_set_id" {
   description = "The ID of the assigned delegation set."
   value       = aws_route53_zone.public.delegation_set_id
 }
+
+output "logging" {
+  description = <<EOF
+  A configuration for query logging of the Route53 Hosted Zone.
+    `cloudwatch` - The configuration for Route53 query logs to CloudWatch Logs.
+  EOF
+  value = {
+    cloudwatch = {
+      enabled   = length(aws_route53_query_log.this) > 0
+      log_group = one(aws_route53_query_log.this[*].cloudwatch_log_group_arn)
+    }
+  }
+}

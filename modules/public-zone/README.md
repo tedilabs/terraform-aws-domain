@@ -3,6 +3,7 @@
 This module creates following resources.
 
 - `aws_route53_zone`
+- `aws_route53_query_log` (optional)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -28,6 +29,7 @@ This module creates following resources.
 
 | Name | Type |
 |------|------|
+| [aws_route53_query_log.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_query_log) | resource |
 | [aws_route53_zone.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 
 ## Inputs
@@ -38,6 +40,8 @@ This module creates following resources.
 | <a name="input_comment"></a> [comment](#input\_comment) | (Optional) A comment for the Hosted Zone. | `string` | `"Managed by Terraform"` | no |
 | <a name="input_delegation_set_id"></a> [delegation\_set\_id](#input\_delegation\_set\_id) | (Optional) The ID of the reusable delegation set whose NS records you want to assign to the Hosted Zone. | `string` | `null` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | (Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone. | `bool` | `false` | no |
+| <a name="input_logging_cloudwatch_enabled"></a> [logging\_cloudwatch\_enabled](#input\_logging\_cloudwatch\_enabled) | (Optional) Indicates whether you want to enable or disable Route53 query logging. The CloudWatch log group must be in the `us-east-1` region. A permissive CloudWatch log resource policy must be in place. | `bool` | `false` | no |
+| <a name="input_logging_cloudwatch_log_group"></a> [logging\_cloudwatch\_log\_group](#input\_logging\_cloudwatch\_log\_group) | (Optional) The ARN of log group on CloudWatch Logs to deliver logs to. | `string` | `""` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | (Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones. | `string` | `"default"` | no |
 | <a name="input_resource_group_description"></a> [resource\_group\_description](#input\_resource\_group\_description) | (Optional) The description of Resource Group. | `string` | `"Managed by Terraform."` | no |
@@ -53,6 +57,7 @@ This module creates following resources.
 | <a name="output_comment"></a> [comment](#output\_comment) | A comment for the Hosted Zone. |
 | <a name="output_delegation_set_id"></a> [delegation\_set\_id](#output\_delegation\_set\_id) | The ID of the assigned delegation set. |
 | <a name="output_id"></a> [id](#output\_id) | The Hosted Zone ID. This can be referenced by zone records. |
+| <a name="output_logging"></a> [logging](#output\_logging) | A configuration for query logging of the Route53 Hosted Zone.<br>    `cloudwatch` - The configuration for Route53 query logs to CloudWatch Logs. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the Hosted Zone. |
 | <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers) | A list of name servers in associated (or default) delegation set. |
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | The namespace of the Hosted Zone. |
