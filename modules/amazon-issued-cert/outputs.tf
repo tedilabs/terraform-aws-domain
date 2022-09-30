@@ -5,7 +5,7 @@ output "name" {
 
 output "arn" {
   description = "The ARN of the certificate."
-  value       = var.validation_dns_managed ? aws_acm_certificate_validation.this[0].certificate_arn : aws_acm_certificate.this.arn
+  value       = aws_acm_certificate.this.arn
 }
 
 output "status" {
@@ -26,6 +26,16 @@ output "subject_alternative_names" {
 output "certificate_transparency_logging_enabled" {
   description = "Whether or not the certificate transparency logging is enabled."
   value       = var.certificate_transparency_logging_enabled
+}
+
+output "effective_date" {
+  description = "Effective date and time of the certificate. Start of the validity period of the certificate."
+  value       = aws_acm_certificate.this.not_before
+}
+
+output "expiration_date" {
+  description = "Expiration date and time of the certificate."
+  value       = aws_acm_certificate.this.not_after
 }
 
 output "validation_method" {

@@ -27,3 +27,13 @@ output "certificate_authority_arn" {
   description = "The ARN of an ACMPCA."
   value       = aws_acm_certificate.this.certificate_authority_arn
 }
+
+output "effective_date" {
+  description = "Effective date and time of the certificate. Start of the validity period of the certificate."
+  value       = aws_acm_certificate.this.not_before
+}
+
+output "expiration_date" {
+  description = "Expiration date and time of the certificate."
+  value       = aws_acm_certificate.this.not_after
+}
