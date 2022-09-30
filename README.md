@@ -22,6 +22,7 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
 - **ACM (AWS Certificate Manager)**
   - Amazon issued Certificate
   - Private CA issued Certificate
+  - Imported Certificate
 
 
 ## Self Promotion
