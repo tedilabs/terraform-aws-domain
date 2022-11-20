@@ -6,6 +6,14 @@
 
 Terraform module which creates Route53 related resources on AWS.
 
+- [amazon-issued-cert](./modules/amazon-issued-cert)
+- [imported-cert](./modules/imported-cert)
+- [private-ca-issued-cert](./modules/private-ca-issued-cert)
+- [private-zone](./modules/private-zone)
+- [public-zone](./modules/public-zone)
+- [resolver-inbound-endpoint](./modules/resolver-inbound-endpoint)
+- [resolver-query-logging](./modules/resolver-query-logging)
+
 
 ## Target AWS Services
 
