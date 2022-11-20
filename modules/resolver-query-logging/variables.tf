@@ -3,13 +3,13 @@ variable "name" {
   type        = string
 }
 
-variable "destination_arn" {
+variable "destination" {
   description = "(Required) The ARN of the resource that you want Route 53 Resolver to send query logs. You can send query logs to an S3 bucket, a CloudWatch Logs log group, or a Kinesis Data Firehose delivery stream."
   type        = string
 }
 
-variable "vpc_ids" {
-  description = "(Optional) List of VPC IDs that you want this query logging configuration to log queries for."
+variable "vpc_associations" {
+  description = "(Optional) A list of VPC IDs that you want this query logging configuration to log queries for."
   type        = list(string)
   default     = []
   nullable    = false
@@ -53,4 +53,25 @@ variable "resource_group_description" {
   type        = string
   default     = "Managed by Terraform."
   nullable    = false
+}
+
+
+###################################################
+# Resource Sharing by RAM (Resource Access Manager)
+###################################################
+
+variable "shares" {
+  description = "(Optional) A list of resource shares via RAM (Resource Access Manager)."
+  type = list(object({
+    name = optional(string)
+
+    permissions = optional(set(string), ["AWSRAMDefaultPermissionResolverQueryLogConfig"])
+
+    external_principals_allowed = optional(bool, false)
+    principals                  = optional(set(string), [])
+
+    tags = optional(map(string), {})
+  }))
+  default  = []
+  nullable = false
 }

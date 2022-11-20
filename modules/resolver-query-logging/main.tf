@@ -16,7 +16,7 @@ locals {
 
 resource "aws_route53_resolver_query_log_config" "this" {
   name            = local.metadata.name
-  destination_arn = var.destination_arn
+  destination_arn = var.destination
 
   tags = merge(
     {
@@ -28,7 +28,7 @@ resource "aws_route53_resolver_query_log_config" "this" {
 }
 
 resource "aws_route53_resolver_query_log_config_association" "this" {
-  for_each = toset(var.vpc_ids)
+  for_each = toset(var.vpc_associations)
 
   resolver_query_log_config_id = aws_route53_resolver_query_log_config.this.id
   resource_id                  = each.value
