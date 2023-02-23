@@ -20,7 +20,7 @@ output "vpc_id" {
 
 output "ip_addresses" {
   description = "IP addresses in your VPC that you want DNS queries to pass through on the way from your network to your VPCs."
-  value       = aws_route53_resolver_endpoint.this.ip_address.*.ip
+  value       = aws_route53_resolver_endpoint.this.ip_address[*].ip
 }
 
 output "security_group_ids" {
@@ -30,5 +30,5 @@ output "security_group_ids" {
 
 output "subnet_ids" {
   description = "A list of the ID of subnets that IP addresses of resolver endpoint are allocated in."
-  value       = distinct(aws_route53_resolver_endpoint.this.ip_address.*.subnet_id)
+  value       = distinct(aws_route53_resolver_endpoint.this.ip_address[*].subnet_id)
 }
