@@ -14,12 +14,19 @@ locals {
   } : {}
 }
 
+
+###################################################
+# Public Hosted Zone
+###################################################
+
+# INFO: Not supported attributes
+# - `vpc`
 resource "aws_route53_zone" "public" {
   name          = var.name
-  comment       = var.comment
+  comment       = var.description
   force_destroy = var.force_destroy
 
-  delegation_set_id = var.delegation_set_id
+  delegation_set_id = var.delegation_set
 
   tags = merge(
     {
@@ -36,9 +43,9 @@ resource "aws_route53_zone" "public" {
 ###################################################
 
 resource "aws_route53_query_log" "this" {
-  count = var.logging_cloudwatch_enabled ? 1 : 0
+  count = var.logging.cloudwatch.enabled ? 1 : 0
 
   zone_id = aws_route53_zone.public.zone_id
 
-  cloudwatch_log_group_arn = var.logging_cloudwatch_log_group
+  cloudwatch_log_group_arn = var.logging.cloudwatch.log_group
 }

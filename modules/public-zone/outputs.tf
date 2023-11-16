@@ -18,9 +18,14 @@ output "namespace" {
   value       = var.namespace
 }
 
-output "comment" {
-  description = "A comment for the Hosted Zone."
+output "description" {
+  description = "A description for the Hosted Zone."
   value       = aws_route53_zone.public.comment
+}
+
+output "primary_name_server" {
+  description = "The Route 53 name server that created the SOA record."
+  value       = aws_route53_zone.public.primary_name_server
 }
 
 output "name_servers" {
@@ -28,7 +33,7 @@ output "name_servers" {
   value       = aws_route53_zone.public.name_servers
 }
 
-output "delegation_set_id" {
+output "delegation_set" {
   description = "The ID of the assigned delegation set."
   value       = aws_route53_zone.public.delegation_set_id
 }

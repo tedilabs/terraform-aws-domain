@@ -15,13 +15,19 @@ locals {
 }
 
 
+###################################################
+# Private Hosted Zone
+###################################################
+
+# INFO: Not supported attributes
+# - `delegation_set_id`
 resource "aws_route53_zone" "private" {
   name          = var.name
-  comment       = var.comment
+  comment       = var.description
   force_destroy = var.force_destroy
 
   vpc {
-    vpc_region = try(var.primary_vpc_association.region, null)
+    vpc_region = var.primary_vpc_association.region
     vpc_id     = var.primary_vpc_association.vpc_id
   }
 
@@ -45,13 +51,13 @@ resource "aws_route53_zone" "private" {
 
 resource "aws_route53_vpc_association_authorization" "this" {
   for_each = {
-    for vpc_association in var.authorized_cross_account_vpc_associations :
-    vpc_association.vpc_id => vpc_association
+    for authorization in var.cross_account_vpc_association_authorizations :
+    authorization.vpc_id => authorization
   }
 
   zone_id = aws_route53_zone.private.zone_id
 
-  vpc_region = try(each.value.region, null)
+  vpc_region = each.value.region
   vpc_id     = each.value.vpc_id
 }
 
@@ -68,7 +74,7 @@ resource "aws_route53_zone_association" "secondary" {
 
   zone_id = aws_route53_zone.private.zone_id
 
-  vpc_region = try(each.value.region, null)
+  vpc_region = each.value.region
   vpc_id     = each.value.vpc_id
 
   depends_on = [
