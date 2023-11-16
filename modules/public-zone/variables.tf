@@ -1,47 +1,51 @@
 variable "name" {
   description = "(Required) The name of the Hosted Zone."
   type        = string
+  nullable    = false
 }
 
 variable "namespace" {
-  description = "(Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones."
+  description = "(Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones. Defaults to `default`."
   type        = string
   default     = "default"
   nullable    = false
 }
 
-variable "comment" {
-  description = "(Optional) A comment for the Hosted Zone."
+variable "description" {
+  description = "(Optional) A description for the Hosted Zone."
   type        = string
-  default     = "Managed by Terraform"
+  default     = "Managed by Terraform."
   nullable    = false
 }
 
 variable "force_destroy" {
-  description = "(Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone."
+  description = "(Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone. Defaults to `false`."
   type        = bool
   default     = false
   nullable    = false
 }
 
-variable "delegation_set_id" {
+variable "delegation_set" {
   description = "(Optional) The ID of the reusable delegation set whose NS records you want to assign to the Hosted Zone."
   type        = string
   default     = null
 }
 
-variable "logging_cloudwatch_enabled" {
-  description = "(Optional) Indicates whether you want to enable or disable Route53 query logging. The CloudWatch log group must be in the `us-east-1` region. A permissive CloudWatch log resource policy must be in place."
-  type        = bool
-  default     = false
-  nullable    = false
-}
-
-variable "logging_cloudwatch_log_group" {
-  description = "(Optional) The ARN of log group on CloudWatch Logs to deliver logs to."
-  type        = string
-  default     = ""
-  nullable    = false
+variable "logging" {
+  description = <<EOF
+  (Optional) The configuration of Route53 query logging. `logging` as defined below.
+    (Optional) `cloudwatch` - A configuration to define where the execution history events are logged. `cloudwatch` as defined below.
+      (Optional) `enabled` - Whether to enable or disable Route53 query logging.
+      (Optional) `log_group` - The ARN (Amazon Resource Name) of the CloudWatch Log Group. The CloudWatch log group must be in the `us-east-1` region. A permissive CloudWatch log resource policy must be in place.
+  EOF
+  type = object({
+    cloudwatch = optional(object({
+      enabled   = optional(bool, false)
+      log_group = optional(string, "")
+    }), {})
+  })
+  default  = {}
+  nullable = false
 }
 
 variable "tags" {

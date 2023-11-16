@@ -1,52 +1,70 @@
 variable "name" {
   description = "(Required) The name of the Hosted Zone."
   type        = string
+  nullable    = false
 }
 
 variable "namespace" {
-  description = "(Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones."
+  description = "(Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones. Defaults to `default`."
   type        = string
   default     = "default"
   nullable    = false
 }
 
-variable "comment" {
-  description = "(Optional) A comment for the Hosted Zone."
+variable "description" {
+  description = "(Optional) A description for the Hosted Zone."
   type        = string
-  default     = "Managed by Terraform"
+  default     = "Managed by Terraform."
   nullable    = false
 }
 
 variable "force_destroy" {
-  description = "(Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone."
+  description = "(Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone. Defaults to `false`."
   type        = bool
   default     = false
   nullable    = false
 }
 
-variable "authorized_cross_account_vpc_associations" {
-  description = "(Optional) Authorizes a VPC in a peer account to be associated with a local Route53 Hosted Zone. `vpc_id` is required to authorize for association with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
-  type        = list(map(string))
-  default     = []
-  nullable    = false
+variable "cross_account_vpc_association_authorizations" {
+  description = <<EOF
+  (Optional) A list of authorizations for a VPC in a peer account to be associated with the Route53 Hosted Zone. Each block of `cross_account_vpc_association_authorizations` as defined below.
+    (Required) `vpc_id` - The ID of the VPC to authorize for association with the private Hosted Zone.
+    (Optional) `region` - The region of the VPC to authorize. Defaults to the region of the AWS provider.
+  EOF
+  type = list(object({
+    region = optional(string)
+    vpc_id = string
+  }))
+  default  = []
+  nullable = false
 }
 
 variable "primary_vpc_association" {
   description = <<EOF
-  (Required) The Primary VPC to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider. `primary_vpc_association` block as defined below.
+  (Required) The Primary VPC to associate with the private hosted zone. `primary_vpc_association` block as defined below.
     (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.
     (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider.
   EOF
-  type        = map(string)
-  default     = {}
-  nullable    = false
+  type = object({
+    region = optional(string)
+    vpc_id = string
+  })
+  nullable = false
 }
 
 variable "secondary_vpc_associations" {
-  description = "(Optional) A list of secondary VPCs to associate with the private hosted zone. `vpc_id` is required to associate with the private Hosted Zone. `region` is optional. Defaults to the region of the AWS provider."
-  type        = list(map(string))
-  default     = []
-  nullable    = false
+  description = <<EOF
+  (Optional) A list of secondary VPCs to associate with the private hosted zone. Each
+  block of `secondary_vpc_associations` as defined below.
+    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.
+    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider.
+  EOF
+  type = list(object({
+    region = optional(string)
+    vpc_id = string
+  }))
+  default  = []
+  nullable = false
 }
 
 variable "tags" {

@@ -18,9 +18,14 @@ output "namespace" {
   value       = var.namespace
 }
 
-output "comment" {
-  description = "A comment for the Hosted Zone."
+output "description" {
+  description = "A description for the Hosted Zone."
   value       = aws_route53_zone.private.comment
+}
+
+output "primary_name_server" {
+  description = "The Route 53 name server that created the SOA record."
+  value       = aws_route53_zone.private.primary_name_server
 }
 
 output "name_servers" {
@@ -30,15 +35,27 @@ output "name_servers" {
 
 output "vpc_associations" {
   description = "A list of associated VPCs with a private Hosted Zone."
-  value       = aws_route53_zone.private.vpc
+  value = concat(
+    [{
+      region = one(aws_route53_zone.private.vpc[*].vpc_region)
+      vpc_id = one(aws_route53_zone.private.vpc[*].vpc_id)
+    }],
+    [
+      for association in aws_route53_zone_association.secondary : {
+        region = association.vpc_region
+        vpc_id = association.vpc_id
+      }
+    ]
+
+  )
 }
 
-output "authorized_cross_account_vpc_associations" {
+output "cross_account_vpc_association_authorizations" {
   description = "A list of authorized VPCs in cross accounts to associate with a private Hosted Zone."
   value = [
     for authorization in values(aws_route53_vpc_association_authorization.this) : {
-      vpc_region = authorization.vpc_region
-      vpc_id     = authorization.vpc_id
+      region = authorization.vpc_region
+      vpc_id = authorization.vpc_id
     }
   ]
 }

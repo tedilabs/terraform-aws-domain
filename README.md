@@ -33,6 +33,14 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
   - Imported Certificate
 
 
+## Examples
+
+### Route53
+
+- [route53-private-zone-simple](./examples/route53-private-zone-simple/)
+- [route53-public-zone-simple](./examples/route53-public-zone-simple/)
+
+
 ## Self Promotion
 
 Like this project? Follow the repository on [GitHub](https://github.com/tedilabs/terraform-aws-domain). And if you're feeling especially charitable, follow **[posquit0](https://github.com/posquit0)** on GitHub.
