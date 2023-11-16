@@ -35,19 +35,12 @@ output "name_servers" {
 
 output "vpc_associations" {
   description = "A list of associated VPCs with a private Hosted Zone."
-  value = concat(
-    [{
-      region = one(aws_route53_zone.private.vpc[*].vpc_region)
-      vpc_id = one(aws_route53_zone.private.vpc[*].vpc_id)
-    }],
-    [
-      for association in aws_route53_zone_association.secondary : {
-        region = association.vpc_region
-        vpc_id = association.vpc_id
-      }
-    ]
-
-  )
+  value = [
+    for association in aws_route53_zone.private.vpc : {
+      region = association.vpc_region
+      vpc_id = association.vpc_id
+    }
+  ]
 }
 
 output "cross_account_vpc_association_authorizations" {
