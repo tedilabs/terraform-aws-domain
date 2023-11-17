@@ -50,3 +50,18 @@ output "logging" {
     }
   }
 }
+
+output "ns_records" {
+  description = <<EOF
+  A map of `NS` records for the zone. Each key of the map is the record name.
+    `values` - A list of the record values
+    `ttl` - The TTL of the record.
+  EOF
+  value = {
+    for name, record in aws_route53_record.ns :
+    name => {
+      values = record.records
+      ttl    = record.ttl
+    }
+  }
+}

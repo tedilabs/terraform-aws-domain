@@ -48,6 +48,20 @@ variable "logging" {
   nullable = false
 }
 
+variable "ns_records" {
+  description = <<EOF
+  (Optional) A map of `NS` records for the zone. Each key of the map is the record name. Each value of `ns_records` as defined below.
+    (Required) `values` - A list of the record values
+    (Optional) `ttl` - The TTL of the record. Defaults to `300`.
+  EOF
+  type = map(object({
+    values = list(string)
+    ttl    = optional(number, 300)
+  }))
+  default  = {}
+  nullable = false
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to add to all resources."
   type        = map(string)
