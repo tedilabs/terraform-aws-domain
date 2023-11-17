@@ -3,6 +3,11 @@ output "name" {
   value       = var.name
 }
 
+output "id" {
+  description = "The ID of the certificate."
+  value       = aws_acm_certificate.this.id
+}
+
 output "arn" {
   description = "The ARN of the certificate."
   value       = aws_acm_certificate.this.arn
@@ -13,13 +18,18 @@ output "status" {
   value       = aws_acm_certificate.this.status
 }
 
-output "subject_name" {
+output "type" {
+  description = "The type of the certificate."
+  value       = aws_acm_certificate.this.type
+}
+
+output "domain_name" {
   description = "The domain name for which the certificate is issued."
   value       = aws_acm_certificate.this.domain_name
 }
 
 output "subject_alternative_names" {
-  description = "List of domains that is SANs in the issued certificate."
+  description = "The list of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate."
   value       = aws_acm_certificate.this.subject_alternative_names
 }
 

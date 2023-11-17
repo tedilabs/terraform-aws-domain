@@ -14,11 +14,36 @@ locals {
   } : {}
 }
 
+locals {
+  key_algorithms = {
+    "RSA_1024"   = "RSA_1024"
+    "RSA_2048"   = "RSA_2048"
+    "RSA_3072"   = "RSA_3072"
+    "RSA_4096"   = "RSA_4096"
+    "ECDSA_P256" = "EC_prime256v1"
+    "ECDSA_P384" = "EC_secp384r1"
+    "ECDSA_P521" = "EC_secp521r1"
+  }
+}
+
+
+###################################################
+# ACM Certificate
+###################################################
+
+# INFO: Not supported attributes
+# - `certificate_body`
+# - `certificate_chain`
+# - `private_key`
+# - `validation_method`
+# - `validation_options`
 resource "aws_acm_certificate" "this" {
-  domain_name               = var.subject_name
+  certificate_authority_arn = var.certificate_authority
+
+  domain_name               = var.domain_name
   subject_alternative_names = var.subject_alternative_names
 
-  certificate_authority_arn = var.certificate_authority_arn
+  key_algorithm = local.key_algorithms[var.key_algorithm]
 
   tags = merge(
     {
