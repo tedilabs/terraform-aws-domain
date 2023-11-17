@@ -2,6 +2,9 @@
 ":floppy_disk: amazon-issued-cert":
 - modules/amazon-issued-cert/**/*
 
+":floppy_disk: cidr-collection":
+- modules/cidr-collection/**/*
+
 ":floppy_disk: imported-cert":
 - modules/imported-cert/**/*
 
