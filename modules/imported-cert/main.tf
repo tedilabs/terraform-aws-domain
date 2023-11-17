@@ -14,6 +14,19 @@ locals {
   } : {}
 }
 
+
+###################################################
+# ACM Certificate
+###################################################
+
+# INFO: Not supported attributes
+# - `certificate_authority_arn`
+# - `domain_name`
+# - `key_algorithm`
+# - `options`
+# - `subject_alternative_names`
+# - `validation_method`
+# - `validation_option`
 resource "aws_acm_certificate" "this" {
   private_key       = var.private_key
   certificate_body  = var.certificate_body

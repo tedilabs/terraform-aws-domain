@@ -1,7 +1,6 @@
 variable "name" {
-  description = "(Optional) The name of the certificate."
+  description = "(Required) The name of the certificate."
   type        = string
-  default     = ""
   nullable    = false
 }
 
@@ -21,6 +20,7 @@ variable "certificate_chain" {
   description = "(Optional) Certificate's PEM-formatted chain."
   type        = string
   default     = null
+  nullable    = true
 }
 
 variable "tags" {

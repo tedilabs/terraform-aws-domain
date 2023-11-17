@@ -16,7 +16,7 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.26.0 |
 
 ## Modules
 
@@ -35,10 +35,10 @@ This module creates following resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_certificate_body"></a> [certificate\_body](#input\_certificate\_body) | (Required) Certificate's PEM-formatted public key. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | (Required) The name of the certificate. | `string` | n/a | yes |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | (Required) Certificate's PEM-formatted private key. | `string` | n/a | yes |
 | <a name="input_certificate_chain"></a> [certificate\_chain](#input\_certificate\_chain) | (Optional) Certificate's PEM-formatted chain. | `string` | `null` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
-| <a name="input_name"></a> [name](#input\_name) | (Optional) The name of the certificate. | `string` | `""` | no |
 | <a name="input_resource_group_description"></a> [resource\_group\_description](#input\_resource\_group\_description) | (Optional) The description of Resource Group. | `string` | `"Managed by Terraform."` | no |
 | <a name="input_resource_group_enabled"></a> [resource\_group\_enabled](#input\_resource\_group\_enabled) | (Optional) Whether to create Resource Group to find and group AWS resources which are created by this module. | `bool` | `true` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | (Optional) The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. | `string` | `""` | no |
@@ -49,10 +49,12 @@ This module creates following resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the certificate. |
+| <a name="output_domain_name"></a> [domain\_name](#output\_domain\_name) | The domain name for which the certificate is issued. |
 | <a name="output_effective_date"></a> [effective\_date](#output\_effective\_date) | Effective date and time of the certificate. Start of the validity period of the certificate. |
 | <a name="output_expiration_date"></a> [expiration\_date](#output\_expiration\_date) | Expiration date and time of the certificate. |
+| <a name="output_id"></a> [id](#output\_id) | The ID of the certificate. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the certificate. |
 | <a name="output_status"></a> [status](#output\_status) | Status of the certificate. |
-| <a name="output_subject_alternative_names"></a> [subject\_alternative\_names](#output\_subject\_alternative\_names) | List of domains that is SANs in the issued certificate. |
-| <a name="output_subject_name"></a> [subject\_name](#output\_subject\_name) | The domain name for which the certificate is issued. |
+| <a name="output_subject_alternative_names"></a> [subject\_alternative\_names](#output\_subject\_alternative\_names) | The list of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate. |
+| <a name="output_type"></a> [type](#output\_type) | The type of the certificate. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
