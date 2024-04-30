@@ -14,6 +14,9 @@ locals {
   } : {}
 }
 
+locals {
+  transfer_lock_unsupported_tlds = [".fi"]
+}
 
 ###################################################
 # Registred Domain in Route53 Registry
@@ -24,8 +27,11 @@ locals {
 resource "aws_route53domains_registered_domain" "this" {
   domain_name = var.name
 
-  auto_renew    = var.auto_renew_enabled
-  transfer_lock = var.transfer_lock_enabled
+  auto_renew = var.auto_renew_enabled
+  transfer_lock = (anytrue([
+    for tld in local.transfer_lock_unsupported_tlds :
+    endswith(var.name, tld)]
+  ) ? false : var.transfer_lock_enabled)
 
 
   ## Name Servers

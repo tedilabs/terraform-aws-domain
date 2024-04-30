@@ -12,7 +12,7 @@ variable "auto_renew_enabled" {
 }
 
 variable "transfer_lock_enabled" {
-  description = "(Optional) Whether the domain is locked for transfer. Defaults to `true`."
+  description = "(Optional) Whether the domain is locked for transfer. Defaults to `true`. Following top-level domains do not support transfer lock: `.fi`."
   type        = bool
   default     = true
   nullable    = false
