@@ -13,7 +13,8 @@ resource "aws_route53_record" "ns" {
 
   records = each.value.values
 
-  allow_overwrite = false
+  # To manage auto-created `NS` record for the Hosted Zone
+  allow_overwrite = each.key == var.name
 
   lifecycle {
     precondition {
