@@ -12,6 +12,7 @@ Terraform module which creates Route53 related resources on AWS.
 - [private-ca-issued-cert](./modules/private-ca-issued-cert)
 - [private-zone](./modules/private-zone)
 - [public-zone](./modules/public-zone)
+- [registered-domain](./modules/registered-domain)
 - [resolver-inbound-endpoint](./modules/resolver-inbound-endpoint)
 - [resolver-query-logging](./modules/resolver-query-logging)
 
@@ -21,6 +22,8 @@ Terraform module which creates Route53 related resources on AWS.
 Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-domain) were written to manage the following AWS Services with Terraform.
 
 - **Route53**
+  - Registrar
+    - Registered Domain
   - Hosted Zone
     - Public Hosted Zone
     - Private Hosted Zone

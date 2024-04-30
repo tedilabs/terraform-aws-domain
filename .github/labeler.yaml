@@ -17,6 +17,9 @@
 ":floppy_disk: public-zone":
 - modules/public-zone/**/*
 
+":floppy_disk: registered-domain":
+- modules/registered-domain/**/*
+
 ":floppy_disk: resolver-inbound-endpoint":
 - modules/resolver-inbound-endpoint/**/*
 
