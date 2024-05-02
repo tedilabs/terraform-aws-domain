@@ -1,6 +1,20 @@
 version: 2
 updates:
-- package-ecosystem: "github-actions"
-  directory: "/"
+- package-ecosystem: github-actions
+  directory: /
   schedule:
-    interval: "daily"
+    interval: daily
+
+- package-ecosystem: terraform
+  directories:
+  - /modules/amazon-issued-cert
+  - /modules/cidr-collection
+  - /modules/imported-cert
+  - /modules/private-ca-issued-cert
+  - /modules/private-zone
+  - /modules/public-zone
+  - /modules/registered-domain
+  - /modules/resolver-inbound-endpoint
+  - /modules/resolver-query-logging
+  schedule:
+    interval: weekly
