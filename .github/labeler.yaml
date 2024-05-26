@@ -1,27 +1,45 @@
 # Modules
 ":floppy_disk: amazon-issued-cert":
-- modules/amazon-issued-cert/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/amazon-issued-cert/**/*
 
 ":floppy_disk: cidr-collection":
-- modules/cidr-collection/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/cidr-collection/**/*
 
 ":floppy_disk: imported-cert":
-- modules/imported-cert/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/imported-cert/**/*
 
 ":floppy_disk: private-ca-issued-cert":
-- modules/private-ca-issued-cert/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/private-ca-issued-cert/**/*
 
 ":floppy_disk: private-zone":
-- modules/private-zone/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/private-zone/**/*
 
 ":floppy_disk: public-zone":
-- modules/public-zone/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/public-zone/**/*
 
 ":floppy_disk: registered-domain":
-- modules/registered-domain/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/registered-domain/**/*
 
 ":floppy_disk: resolver-inbound-endpoint":
-- modules/resolver-inbound-endpoint/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/resolver-inbound-endpoint/**/*
 
 ":floppy_disk: resolver-query-logging":
-- modules/resolver-query-logging/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/resolver-query-logging/**/*
