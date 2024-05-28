@@ -51,7 +51,7 @@ data "aws_subnet" "this" {
 
 module "security_group__this" {
   source  = "tedilabs/network/aws//modules/security-group"
-  version = "~> 0.26.0"
+  version = "~> 0.32.1"
 
   name        = local.metadata.name
   description = "Security Group for Route53 Resolver Inbound Endpoint."
