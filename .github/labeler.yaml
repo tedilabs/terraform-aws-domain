@@ -29,6 +29,11 @@
   - any-glob-to-any-file:
     - modules/public-zone/**/*
 
+":floppy_disk: record-set":
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/record-set/**/*
+
 ":floppy_disk: registered-domain":
 - changed-files:
   - any-glob-to-any-file:
