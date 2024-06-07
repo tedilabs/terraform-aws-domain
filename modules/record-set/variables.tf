@@ -75,7 +75,7 @@ variable "records" {
   description = <<EOF
   (Optional) A list of records for the record set. Each item of `records` as defined below.
     (Optional) `id` - A unique ID to differentiate this record from other records with the same domain name and type. Not required if the `routing_policy` is `SIMPLE`. Defaults to `default`.
-    (Optional) `value` - A configuration for non-alias record with a set of the record values. You can specify more than one value for all record types except `CNAME` and `SOA`. Conflicts with `alias`.
+    (Optional) `value` - A configuration for non-alias record with a list of the record values. You can specify more than one value for all record types except `CNAME` and `SOA`. Conflicts with `alias`.
     (Optional) `alias` - A configuration for alias record. Conflicts with `value`. `alias` as defined below.
       (Required) `name` - DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another record set in this hosted zone.
       (Required) `zone` - Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone.
@@ -83,7 +83,7 @@ variable "records" {
   EOF
   type = list(object({
     id    = optional(string, "default")
-    value = optional(set(string))
+    value = optional(list(string))
     alias = optional(object({
       name                   = string
       zone                   = string

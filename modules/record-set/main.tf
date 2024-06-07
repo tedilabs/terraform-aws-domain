@@ -35,7 +35,16 @@ resource "aws_route53_record" "this" {
 
   ## Record
   # Non-alias Record
-  records = each.value.value
+  records = (var.type == "TXT"
+    ? [
+      for v in each.value.value :
+      join("\"\"", [
+        for idx in range(0, length(v), 255) :
+        substr(v, idx, 255)
+      ])
+    ]
+    : each.value.value
+  )
 
   # Alias Record
   dynamic "alias" {

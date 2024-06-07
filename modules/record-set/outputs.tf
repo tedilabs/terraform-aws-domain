@@ -45,7 +45,7 @@ output "records" {
   value = {
     for id, record in aws_route53_record.this :
     id => {
-      id    = record.set_identifier
+      id    = record.set_identifier == "" ? null : record.set_identifier
       value = record.records
       alias = (one(record.alias) != null
         ? {
