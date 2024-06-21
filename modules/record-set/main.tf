@@ -25,7 +25,7 @@ resource "aws_route53_record" "this" {
   zone_id         = var.zone
   name            = var.name
   type            = var.type
-  ttl             = var.ttl
+  ttl             = each.value.alias != null ? null : var.ttl
   allow_overwrite = var.overwrite
 
   set_identifier = (var.routing_policy == "SIMPLE"
