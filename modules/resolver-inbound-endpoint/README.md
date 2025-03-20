@@ -6,7 +6,7 @@ This module creates following resources.
 - `aws_security_group`
 - `aws_security_group_rule`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -59,4 +59,4 @@ This module creates following resources.
 | <a name="output_security_group_ids"></a> [security\_group\_ids](#output\_security\_group\_ids) | A list of the ID of security groups that you want to use to control access to this VPC. |
 | <a name="output_subnet_ids"></a> [subnet\_ids](#output\_subnet\_ids) | A list of the ID of subnets that IP addresses of resolver endpoint are allocated in. |
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC that you want to create the resolver endpoint in. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

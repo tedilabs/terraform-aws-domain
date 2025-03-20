@@ -4,7 +4,7 @@ This module creates following resources.
 
 - `aws_route53_record` (optional)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -52,4 +52,4 @@ No modules.
 | <a name="output_ttl"></a> [ttl](#output\_ttl) | The record cache time to live (TTL) in seconds. |
 | <a name="output_type"></a> [type](#output\_type) | The DNS record type of the record set. |
 | <a name="output_zone"></a> [zone](#output\_zone) | The information for Hosted Zone of the record set. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

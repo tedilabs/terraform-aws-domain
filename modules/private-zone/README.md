@@ -6,7 +6,7 @@ This module creates following resources.
 - `aws_route53_zone_vpc_association` (optional)
 - `aws_route53_vpc_association_authorization` (optional)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -64,4 +64,4 @@ This module creates following resources.
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | The namespace of the Hosted Zone. |
 | <a name="output_primary_name_server"></a> [primary\_name\_server](#output\_primary\_name\_server) | The Route 53 name server that created the SOA record. |
 | <a name="output_vpc_associations"></a> [vpc\_associations](#output\_vpc\_associations) | A list of associated VPCs with a private Hosted Zone. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

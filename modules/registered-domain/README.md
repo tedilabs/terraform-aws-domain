@@ -4,7 +4,7 @@ This module creates following resources.
 
 - `aws_route53domains_registered_domain`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -69,4 +69,4 @@ This module creates following resources.
 | <a name="output_transfer_lock_enabled"></a> [transfer\_lock\_enabled](#output\_transfer\_lock\_enabled) | Whether the domain is locked for transfer. |
 | <a name="output_updated_at"></a> [updated\_at](#output\_updated\_at) | The last updated date of the domain as found in the response to a WHOIS query. |
 | <a name="output_whois_server"></a> [whois\_server](#output\_whois\_server) | The fully qualified name of the WHOIS server that can answer the WHOIS query for the domain. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

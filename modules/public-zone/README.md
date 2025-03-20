@@ -6,7 +6,7 @@ This module creates following resources.
 - `aws_route53_query_log` (optional)
 - `aws_route53_record` (optional)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -65,4 +65,4 @@ This module creates following resources.
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | The namespace of the Hosted Zone. |
 | <a name="output_ns_records"></a> [ns\_records](#output\_ns\_records) | A map of `NS` records for the zone. Each key of the map is the record name.<br>    `values` - A list of the record values<br>    `ttl` - The TTL of the record. |
 | <a name="output_primary_name_server"></a> [primary\_name\_server](#output\_primary\_name\_server) | The Route 53 name server that created the SOA record. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

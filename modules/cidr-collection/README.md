@@ -5,7 +5,7 @@ This module creates following resources.
 - `aws_route53_cidr_collection`
 - `aws_route53_cidr_location` (optional)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -46,4 +46,4 @@ No modules.
 | <a name="output_locations"></a> [locations](#output\_locations) | A map of locations for the CIDR collection. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the CIDR collection. |
 | <a name="output_version"></a> [version](#output\_version) | The version of the CIDR collection. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

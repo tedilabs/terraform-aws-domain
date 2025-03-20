@@ -6,7 +6,7 @@ This module creates following resources.
 - `aws_acm_certificate_validation` (Optional)
 - `aws_route53_record` (Optional)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -70,4 +70,4 @@ This module creates following resources.
 | <a name="output_subject_alternative_names"></a> [subject\_alternative\_names](#output\_subject\_alternative\_names) | The list of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate. |
 | <a name="output_type"></a> [type](#output\_type) | The type of the certificate. |
 | <a name="output_validation"></a> [validation](#output\_validation) | The configuration for the certificate validation.<br>    `method` - The method to use to validate the domain ownership for requesting a public certificate.<br>    `domain_records` - A map of domain validation records which can be used to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if `validation.method` is `DNS`.<br>    `emails` - A list of addresses that received a validation E-Mail. Only set if `validation.method` is `EMAIL`. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

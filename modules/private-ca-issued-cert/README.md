@@ -4,7 +4,7 @@ This module creates following resources.
 
 - `aws_acm_certificate`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -60,4 +60,4 @@ This module creates following resources.
 | <a name="output_status"></a> [status](#output\_status) | Status of the certificate. |
 | <a name="output_subject_alternative_names"></a> [subject\_alternative\_names](#output\_subject\_alternative\_names) | The list of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate. |
 | <a name="output_type"></a> [type](#output\_type) | The type of the certificate. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
