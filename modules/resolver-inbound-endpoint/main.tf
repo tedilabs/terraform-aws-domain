@@ -14,20 +14,26 @@ locals {
   } : {}
 }
 
+
+###################################################
+# Inbound Endpoint for Route53 Resolver
+###################################################
+
 resource "aws_route53_resolver_endpoint" "this" {
-  name      = local.metadata.name
   direction = "INBOUND"
+  name      = local.metadata.name
 
-  security_group_ids = concat(var.security_groups, [
-    module.security_group__this.id,
-  ])
+  protocols          = var.protocols
+  security_group_ids = local.security_groups
 
+  resolver_endpoint_type = var.ip_address_type
   dynamic "ip_address" {
     for_each = var.ip_allocations
 
     content {
-      subnet_id = ip_address.value.subnet_id
-      ip        = ip_address.value.ip
+      subnet_id = ip_address.value.subnet
+      ip        = ip_address.value.ipv4_address
+      ipv6      = ip_address.value.ipv6_address
     }
   }
 
@@ -35,54 +41,6 @@ resource "aws_route53_resolver_endpoint" "this" {
     {
       "Name" = local.metadata.name
     },
-    local.module_tags,
-    var.tags,
-  )
-}
-
-
-###################################################
-# Security Group
-###################################################
-
-data "aws_subnet" "this" {
-  id = var.ip_allocations[0].subnet_id
-}
-
-module "security_group__this" {
-  source  = "tedilabs/network/aws//modules/security-group"
-  version = "~> 0.26.0"
-
-  name        = local.metadata.name
-  description = "Security Group for Route53 Resolver Inbound Endpoint."
-  vpc_id      = data.aws_subnet.this.vpc_id
-
-  ingress_rules = [
-    {
-      id          = "dns-tcp/cidrs"
-      description = "Allow CIDRs to query to Route53 Resolver Inbound Endpoint."
-      protocol    = "tcp"
-      from_port   = 53
-      to_port     = 53
-
-      cidr_blocks = var.allowed_ingress_cidrs
-    },
-    {
-      id          = "dns-udp/cidrs"
-      description = "Allow CIDRs to query to Route53 Resolver Inbound Endpoint."
-      protocol    = "udp"
-      from_port   = 53
-      to_port     = 53
-
-      cidr_blocks = var.allowed_ingress_cidrs
-    },
-  ]
-  egress_rules = []
-
-  resource_group_enabled = false
-  module_tags_enabled    = false
-
-  tags = merge(
     local.module_tags,
     var.tags,
   )

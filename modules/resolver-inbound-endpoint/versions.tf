@@ -1,10 +1,14 @@
 terraform {
-  required_version = ">= 1.5"
+  required_version = ">= 1.10"
 
   required_providers {
+    assert = {
+      source  = "hashicorp/assert"
+      version = ">= 0.15"
+    }
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.27"
+      version = ">= 5.72"
     }
   }
 }
