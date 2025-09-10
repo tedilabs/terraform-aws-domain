@@ -168,3 +168,19 @@ output "updated_at" {
 #     if !contains(["id", "domain_name", "tags", "tags_all", "auto_renew", "transfer_lock", "timeouts", "creation_date", "expiration_date", "updated_date", "registrar_name", "registrar_url", "whois_server", "reseller", "abuse_contact_email", "abuse_contact_phone", "admin_contact", "registrant_contact", "tech_contact", "admin_privacy", "registrant_privacy", "tech_privacy", "billing_contact", "billing_privacy", "status_list"], k)
 #   }
 # }
+
+output "resource_group" {
+  description = "The resource group created to manage resources in this module."
+  value = merge(
+    {
+      enabled = var.resource_group.enabled && var.module_tags_enabled
+    },
+    (var.resource_group.enabled && var.module_tags_enabled
+      ? {
+        arn  = module.resource_group[0].arn
+        name = module.resource_group[0].name
+      }
+      : {}
+    )
+  )
+}
