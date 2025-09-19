@@ -18,6 +18,7 @@ locals {
   transfer_lock_unsupported_tlds = [".fi"]
 }
 
+
 ###################################################
 # Registred Domain in Route53 Registry
 ###################################################
@@ -45,8 +46,8 @@ resource "aws_route53domains_registered_domain" "this" {
 
 
   ## Privacy Protection
-  admin_privacy = var.admin_contact.privacy_protection_enabled
-  # billing_privacy    = var.privacy_protection_enabled
+  admin_privacy      = var.admin_contact.privacy_protection_enabled
+  billing_privacy    = var.billing_contact.privacy_protection_enabled
   registrant_privacy = var.registrant_contact.privacy_protection_enabled
   tech_privacy       = var.technical_contact.privacy_protection_enabled
 

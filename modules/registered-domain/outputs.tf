@@ -161,14 +161,6 @@ output "updated_at" {
   value       = aws_route53domains_registered_domain.this.updated_date
 }
 
-# output "debug" {
-#   value = {
-#     for k, v in aws_route53domains_registered_domain.this :
-#     k => v
-#     if !contains(["id", "domain_name", "tags", "tags_all", "auto_renew", "transfer_lock", "timeouts", "creation_date", "expiration_date", "updated_date", "registrar_name", "registrar_url", "whois_server", "reseller", "abuse_contact_email", "abuse_contact_phone", "admin_contact", "registrant_contact", "tech_contact", "admin_privacy", "registrant_privacy", "tech_privacy", "billing_contact", "billing_privacy", "status_list"], k)
-#   }
-# }
-
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(
@@ -184,3 +176,11 @@ output "resource_group" {
     )
   )
 }
+
+# output "debug" {
+#   value = {
+#     for k, v in aws_route53domains_registered_domain.this :
+#     k => v
+#     if !contains(["id", "domain_name", "tags", "tags_all", "auto_renew", "transfer_lock", "timeouts", "creation_date", "expiration_date", "updated_date", "registrar_name", "registrar_url", "whois_server", "reseller", "abuse_contact_email", "abuse_contact_phone", "admin_contact", "registrant_contact", "tech_contact", "admin_privacy", "registrant_privacy", "tech_privacy", "billing_contact", "billing_privacy", "status_list"], k)
+#   }
+# }
