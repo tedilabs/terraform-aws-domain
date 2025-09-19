@@ -35,6 +35,13 @@ resource "aws_route53_zone" "public" {
     local.module_tags,
     var.tags,
   )
+
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes = [
+      vpc,
+    ]
+  }
 }
 
 

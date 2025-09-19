@@ -29,6 +29,7 @@ variable "delegation_set" {
   description = "(Optional) The ID of the reusable delegation set whose NS records you want to assign to the Hosted Zone."
   type        = string
   default     = null
+  nullable    = true
 }
 
 variable "logging" {
@@ -80,9 +81,6 @@ variable "module_tags_enabled" {
 ###################################################
 # Resource Group
 ###################################################
-
-
-
 
 variable "resource_group" {
   description = <<EOF
