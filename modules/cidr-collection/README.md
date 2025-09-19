@@ -10,14 +10,14 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.14 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.25.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.13.0 |
 
 ## Modules
 
