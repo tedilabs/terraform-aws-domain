@@ -40,7 +40,10 @@ resource "aws_route53_zone" "private" {
   )
 
   lifecycle {
-    ignore_changes = [vpc]
+    ignore_changes = [
+      delegation_set_id,
+      vpc,
+    ]
   }
 }
 

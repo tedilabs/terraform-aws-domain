@@ -11,20 +11,20 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.51 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.51.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.13.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.10.0 |
+| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
@@ -39,16 +39,14 @@ This module creates following resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Hosted Zone. | `string` | n/a | yes |
-| <a name="input_primary_vpc_association"></a> [primary\_vpc\_association](#input\_primary\_vpc\_association) | (Required) The Primary VPC to associate with the private hosted zone. `primary_vpc_association` block as defined below.<br>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>object({<br>    region = optional(string)<br>    vpc_id = string<br>  })</pre> | n/a | yes |
-| <a name="input_cross_account_vpc_association_authorizations"></a> [cross\_account\_vpc\_association\_authorizations](#input\_cross\_account\_vpc\_association\_authorizations) | (Optional) A list of authorizations for a VPC in a peer account to be associated with the Route53 Hosted Zone. Each block of `cross_account_vpc_association_authorizations` as defined below.<br>    (Required) `vpc_id` - The ID of the VPC to authorize for association with the private Hosted Zone.<br>    (Optional) `region` - The region of the VPC to authorize. Defaults to the region of the AWS provider. | <pre>list(object({<br>    region = optional(string)<br>    vpc_id = string<br>  }))</pre> | `[]` | no |
+| <a name="input_primary_vpc_association"></a> [primary\_vpc\_association](#input\_primary\_vpc\_association) | (Required) The Primary VPC to associate with the private hosted zone. `primary_vpc_association` block as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  })</pre> | n/a | yes |
+| <a name="input_cross_account_vpc_association_authorizations"></a> [cross\_account\_vpc\_association\_authorizations](#input\_cross\_account\_vpc\_association\_authorizations) | (Optional) A list of authorizations for a VPC in a peer account to be associated with the Route53 Hosted Zone. Each block of `cross_account_vpc_association_authorizations` as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to authorize for association with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to authorize. Defaults to the region of the AWS provider. | <pre>list(object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_description"></a> [description](#input\_description) | (Optional) A description for the Hosted Zone. | `string` | `"Managed by Terraform."` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | (Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone. Defaults to `false`. | `bool` | `false` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | (Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones. Defaults to `default`. | `string` | `"default"` | no |
-| <a name="input_resource_group_description"></a> [resource\_group\_description](#input\_resource\_group\_description) | (Optional) The description of Resource Group. | `string` | `"Managed by Terraform."` | no |
-| <a name="input_resource_group_enabled"></a> [resource\_group\_enabled](#input\_resource\_group\_enabled) | (Optional) Whether to create Resource Group to find and group AWS resources which are created by this module. | `bool` | `true` | no |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | (Optional) The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. | `string` | `""` | no |
-| <a name="input_secondary_vpc_associations"></a> [secondary\_vpc\_associations](#input\_secondary\_vpc\_associations) | (Optional) A list of secondary VPCs to associate with the private hosted zone. Each<br>  block of `secondary_vpc_associations` as defined below.<br>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>list(object({<br>    region = optional(string)<br>    vpc_id = string<br>  }))</pre> | `[]` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Optional) A configurations of Resource Group for this module. `resource_group` as defined below.<br/>    (Optional) `enabled` - Whether to create Resource Group to find and group AWS resources which are created by this module. Defaults to `true`.<br/>    (Optional) `name` - The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. If not provided, a name will be generated using the module name and instance name.<br/>    (Optional) `description` - The description of Resource Group. Defaults to `Managed by Terraform.`. | <pre>object({<br/>    enabled     = optional(bool, true)<br/>    name        = optional(string, "")<br/>    description = optional(string, "Managed by Terraform.")<br/>  })</pre> | `{}` | no |
+| <a name="input_secondary_vpc_associations"></a> [secondary\_vpc\_associations](#input\_secondary\_vpc\_associations) | (Optional) A list of secondary VPCs to associate with the private hosted zone. Each<br/>  block of `secondary_vpc_associations` as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>list(object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A map of tags to add to all resources. | `map(string)` | `{}` | no |
 
 ## Outputs
@@ -63,5 +61,6 @@ This module creates following resources.
 | <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers) | A list of name servers in associated (or default) delegation set. |
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | The namespace of the Hosted Zone. |
 | <a name="output_primary_name_server"></a> [primary\_name\_server](#output\_primary\_name\_server) | The Route 53 name server that created the SOA record. |
+| <a name="output_resource_group"></a> [resource\_group](#output\_resource\_group) | The resource group created to manage resources in this module. |
 | <a name="output_vpc_associations"></a> [vpc\_associations](#output\_vpc\_associations) | A list of associated VPCs with a private Hosted Zone. |
 <!-- END_TF_DOCS -->
