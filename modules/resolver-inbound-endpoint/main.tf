@@ -20,7 +20,9 @@ locals {
 ###################################################
 
 resource "aws_route53_resolver_endpoint" "this" {
-  direction = "INBOUND"
+  region = var.region
+
+  direction = var.delegation_enabled ? "INBOUND_DELEGATION" : "INBOUND"
   name      = local.metadata.name
 
   protocols          = var.protocols

@@ -11,6 +11,8 @@ locals {
 data "aws_subnet" "this" {
   for_each = toset(var.ip_allocations[*].subnet)
 
+  region = var.region
+
   id = each.value
 }
 
@@ -21,9 +23,11 @@ data "aws_subnet" "this" {
 
 module "security_group" {
   source  = "tedilabs/network/aws//modules/security-group"
-  version = "~> 0.32.0"
+  version = "~> 1.0.0"
 
   count = var.default_security_group.enabled ? 1 : 0
+
+  region = var.region
 
   name        = coalesce(var.default_security_group.name, local.metadata.name)
   description = var.default_security_group.description
@@ -57,8 +61,10 @@ module "security_group" {
   )
 
   revoke_rules_on_delete = true
-  resource_group_enabled = false
-  module_tags_enabled    = false
+  resource_group = {
+    enabled = false
+  }
+  module_tags_enabled = false
 
   tags = merge(
     local.module_tags,

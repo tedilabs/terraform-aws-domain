@@ -1,6 +1,22 @@
+variable "region" {
+  description = "(Optional) The region in which to create the module resources. If not provided, the module resources will be created in the provider's configured region."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "name" {
   description = "(Required) The name of the Route53 Resolver Inbound Endpoint."
   type        = string
+  nullable    = false
+}
+
+variable "delegation_enabled" {
+  description = <<EOF
+  (Optional) Whether to enable DNS delegation for the Route53 Resolver Inbound Endpoint. If enabled, Route53 Resolver delegates queries to Route 53 private hosted zones from your network. Defaults to `false`.
+  EOF
+  type        = bool
+  default     = false
   nullable    = false
 }
 
@@ -177,9 +193,6 @@ variable "module_tags_enabled" {
 ###################################################
 # Resource Group
 ###################################################
-
-
-
 
 variable "resource_group" {
   description = <<EOF

@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_route53_resolver_endpoint.this.region
+}
+
 output "id" {
   description = "The ID of the Route53 Resolver Endpoint."
   value       = aws_route53_resolver_endpoint.this.id
@@ -15,7 +20,12 @@ output "name" {
 
 output "direction" {
   description = "The direction of DNS queries to or from the Route 53 Resolver endpoint."
-  value       = aws_route53_resolver_endpoint.this.direction
+  value       = contains(["INBOUND", "INBOUND_DELEGATION"], aws_route53_resolver_endpoint.this.direction) ? "INBOUND" : "ERROR"
+}
+
+output "delegation_enabled" {
+  description = "Whether delegation is enabled for the Route53 Resolver Inbound Endpoint."
+  value       = aws_route53_resolver_endpoint.this.direction == "INBOUND_DELEGATION"
 }
 
 output "protocols" {
@@ -72,14 +82,6 @@ output "subnets" {
   value       = toset(aws_route53_resolver_endpoint.this.ip_address[*].subnet_id)
 }
 
-# output "debug" {
-#   value = {
-#     for k, v in aws_route53_resolver_endpoint.this :
-#     k => v
-#     if !contains(["id", "arn", "direction", "name", "host_vpc_id", "security_group_ids", "protocols", "resolver_endpoint_type", "tags", "tags_all", "ip_address", "timeouts"], k)
-#   }
-# }
-
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(
@@ -95,3 +97,11 @@ output "resource_group" {
     )
   )
 }
+
+# output "debug" {
+#   value = {
+#     for k, v in aws_route53_resolver_endpoint.this :
+#     k => v
+#     if !contains(["id", "arn", "direction", "name", "host_vpc_id", "security_group_ids", "protocols", "resolver_endpoint_type", "tags", "tags_all", "ip_address", "timeouts"], k)
+#   }
+# }
