@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_acm_certificate.this.region
+}
+
 output "name" {
   description = "The name of the certificate."
   value       = var.name
@@ -33,12 +38,9 @@ output "subject_alternative_names" {
   value       = aws_acm_certificate.this.subject_alternative_names
 }
 
-output "key_algorithm" {
-  description = "The algorithm of the public and private key pair to encrypt data."
-  value = {
-    for k, v in local.key_algorithms :
-    v => k
-  }[aws_acm_certificate.this.key_algorithm]
+output "early_renewal_duration" {
+  description = "The time before certificate expiration when ACM starts attempting to renew the certificate."
+  value       = var.early_renewal_duration
 }
 
 output "certificate_authority" {

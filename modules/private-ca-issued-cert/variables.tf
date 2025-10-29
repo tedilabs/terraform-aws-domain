@@ -1,3 +1,10 @@
+variable "region" {
+  description = "(Optional) The region in which to create the module resources. If not provided, the module resources will be created in the provider's configured region."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "name" {
   description = "(Required) The name of the certificate."
   type        = string
@@ -17,16 +24,11 @@ variable "subject_alternative_names" {
   nullable    = false
 }
 
-variable "key_algorithm" {
-  description = "(Optional) The algorithm of the public and private key pair that your Amazon issued certificate uses to encrypt data. RSA is the default key algorithm for ACM certificates. Elliptic Curve Digital Signature Algorithm (ECDSA) keys are smaller, offering security comparable to RSA keys but with greater computing efficiency. However, ECDSA is not supported by all network clients. Some AWS services may require RSA keys, or only support ECDSA keys of a particular size, while others allow the use of either RSA and ECDSA keys to ensure that compatibility is not broken. Supported values are `RSA_1024`, `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECDSA_P256`, `ECDSA_P384`, `ECDSA_P521`. Defaults to `RSA_2048`."
+variable "early_renewal_duration" {
+  description = "(Optional) Amount of time to start automatic renewal process before expiration. Has no effect if less than 60 days. Represented by either a subset of RFC 3339 duration supporting years, months, and days (e.g., `P90D`), or a string such as `2160h`."
   type        = string
-  default     = "RSA_2048"
-  nullable    = false
-
-  validation {
-    condition     = contains(["RSA_1024", "RSA_2048", "RSA_3072", "RSA_4096", "ECDSA_P256", "ECDSA_P384", "ECDSA_P521"], var.key_algorithm)
-    error_message = "Valid values for `key_algorithm` are `RSA_1024`, `RSA_2048`, `RSA_3072`, `RSA_4096`, `ECDSA_P256`, `ECDSA_P384`, `ECDSA_P521`."
-  }
+  default     = null
+  nullable    = true
 }
 
 variable "certificate_authority" {
@@ -53,9 +55,6 @@ variable "module_tags_enabled" {
 ###################################################
 # Resource Group
 ###################################################
-
-
-
 
 variable "resource_group" {
   description = <<EOF
