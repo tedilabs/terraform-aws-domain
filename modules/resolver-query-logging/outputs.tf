@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_route53_resolver_query_log_config.this.region
+}
+
 output "id" {
   description = "The ID of the Route 53 Resolver query logging configuration."
   value       = aws_route53_resolver_query_log_config.this.id
@@ -28,18 +33,6 @@ output "destination" {
   value       = aws_route53_resolver_query_log_config.this.destination_arn
 }
 
-output "sharing" {
-  description = <<EOF
-  The configuration for sharing of the Route53 Resolver query logging configuration.
-    `status` - An indication of whether the query logging configuration is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM). Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`.
-    `shares` - The list of resource shares via RAM (Resource Access Manager).
-  EOF
-  value = {
-    status = aws_route53_resolver_query_log_config.this.share_status
-    shares = module.share
-  }
-}
-
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(
@@ -54,4 +47,16 @@ output "resource_group" {
       : {}
     )
   )
+}
+
+output "sharing" {
+  description = <<EOF
+  The configuration for sharing of the Route53 Resolver query logging configuration.
+    `status` - An indication of whether the query logging configuration is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM). Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`.
+    `shares` - The list of resource shares via RAM (Resource Access Manager).
+  EOF
+  value = {
+    status = aws_route53_resolver_query_log_config.this.share_status
+    shares = module.share
+  }
 }

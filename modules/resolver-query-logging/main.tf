@@ -14,7 +14,14 @@ locals {
   } : {}
 }
 
+
+###################################################
+# Log Config for Resolver Query
+###################################################
+
 resource "aws_route53_resolver_query_log_config" "this" {
+  region = var.region
+
   name            = local.metadata.name
   destination_arn = var.destination
 
@@ -29,6 +36,8 @@ resource "aws_route53_resolver_query_log_config" "this" {
 
 resource "aws_route53_resolver_query_log_config_association" "this" {
   for_each = toset(var.vpc_associations)
+
+  region = var.region
 
   resolver_query_log_config_id = aws_route53_resolver_query_log_config.this.id
   resource_id                  = each.value
