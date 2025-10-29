@@ -39,6 +39,8 @@ locals {
 # TODO: Support `EMAIL` validation method
 # - `validation_options`
 resource "aws_acm_certificate" "this" {
+  region = var.region
+
   domain_name               = var.domain_name
   subject_alternative_names = var.subject_alternative_names
 
@@ -46,6 +48,7 @@ resource "aws_acm_certificate" "this" {
 
   options {
     certificate_transparency_logging_preference = var.certificate_transparency_logging_enabled ? "ENABLED" : "DISABLED"
+    export                                      = var.export_enabled ? "ENABLED" : "DISABLED"
   }
 
   validation_method = var.validation_method
@@ -69,7 +72,7 @@ resource "aws_acm_certificate" "this" {
 ###################################################
 
 locals {
-  subject_names = concat([var.domain_name], var.subject_alternative_names)
+  subject_names = setunion([var.domain_name], var.subject_alternative_names)
 
   dns_validation_enabled = var.validation_method == "DNS" && var.dns_validation.enabled
   dns_validation_records = {
@@ -97,6 +100,8 @@ resource "aws_route53_record" "validation" {
 resource "aws_acm_certificate_validation" "dns" {
   count = local.dns_validation_enabled ? 1 : 0
 
+  region = var.region
+
   certificate_arn         = aws_acm_certificate.this.arn
   validation_record_fqdns = values(aws_route53_record.validation)[*].fqdn
 }
@@ -112,6 +117,8 @@ locals {
 
 resource "aws_acm_certificate_validation" "email" {
   count = local.email_validation_enabled ? 1 : 0
+
+  region = var.region
 
   certificate_arn = aws_acm_certificate.this.arn
 }

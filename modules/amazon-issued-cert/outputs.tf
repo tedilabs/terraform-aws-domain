@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_acm_certificate.this.region
+}
+
 output "name" {
   description = "The name of the certificate."
   value       = var.name
@@ -44,6 +49,11 @@ output "key_algorithm" {
 output "certificate_transparency_logging_enabled" {
   description = "Whether or not the certificate transparency logging is enabled."
   value       = var.certificate_transparency_logging_enabled
+}
+
+output "export_enabled" {
+  description = "Whether the certificate can be exported."
+  value       = var.export_enabled
 }
 
 output "effective_date" {

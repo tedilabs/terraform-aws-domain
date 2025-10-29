@@ -1,3 +1,10 @@
+variable "region" {
+  description = "(Optional) The region in which to create the module resources. If not provided, the module resources will be created in the provider's configured region."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "name" {
   description = "(Required) The name of the certificate."
   type        = string
@@ -11,8 +18,8 @@ variable "domain_name" {
 }
 
 variable "subject_alternative_names" {
-  description = "(Optional) A list of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate."
-  type        = list(string)
+  description = "(Optional) A set of additional FQDNs (Fully qualified domain names) to be included in SANs of the issued certificate."
+  type        = set(string)
   default     = []
   nullable    = false
 }
@@ -33,6 +40,13 @@ variable "certificate_transparency_logging_enabled" {
   description = "(Optional) Whether to add the certificate to a certificate transparency log. Transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. Defaults to `true`."
   type        = bool
   default     = true
+  nullable    = false
+}
+
+variable "export_enabled" {
+  description = "(Optional) Whether the certificate can be exported. Defaults to `false`. NOTE: Note Issuing an exportable certificate is subject to additional charges."
+  type        = bool
+  default     = false
   nullable    = false
 }
 
@@ -92,9 +106,6 @@ variable "module_tags_enabled" {
 ###################################################
 # Resource Group
 ###################################################
-
-
-
 
 variable "resource_group" {
   description = <<EOF
