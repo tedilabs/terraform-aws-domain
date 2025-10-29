@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_acm_certificate.this.region
+}
+
 output "name" {
   description = "The name of the certificate."
   value       = var.name
