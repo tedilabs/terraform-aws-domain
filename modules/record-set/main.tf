@@ -7,8 +7,6 @@ data "aws_route53_zone" "this" {
 # Record Set
 ###################################################
 
-# TODO: `health_check_id` - (Optional) The health check the record should be associated with.
-
 # TODO: `cidr_routing_policy` - (Optional) A block indicating a routing policy based on the IP network ranges of requestors. Conflicts with any other routing policy. Documented below.
 # TODO: `failover_routing_policy` - (Optional) A block indicating the routing behavior when associated health check fails. Conflicts with any other routing policy. Documented below.
 # TODO: `geolocation_routing_policy` - (Optional) A block indicating a routing policy based on the geolocation of the requestor. Conflicts with any other routing policy. Documented below.
@@ -31,6 +29,10 @@ resource "aws_route53_record" "this" {
   set_identifier = (var.routing_policy == "SIMPLE"
     ? null
     : each.value.id
+  )
+  health_check_id = (var.routing_policy != "SIMPLE"
+    ? each.value.health_check_id
+    : null
   )
 
   ## Record

@@ -80,6 +80,7 @@ variable "records" {
       (Required) `name` - DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another record set in this hosted zone.
       (Required) `zone` - Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone.
       (Optional) `evaluate_target_health` - Whether to respond to DNS queries using this record by checking the health of the alias target. Some resources have special requirements, see related part of documentation. Defaults to `true`.
+    (Optional) `health_check_id` - The ID of the health check to associate with this record set. Required if the `routing_policy` is not `SIMPLE`.
   EOF
   type = list(object({
     id    = optional(string, "default")
@@ -89,6 +90,7 @@ variable "records" {
       zone                   = string
       evaluate_target_health = optional(bool, true)
     }))
+    health_check_id = optional(string)
   }))
   default  = []
   nullable = false

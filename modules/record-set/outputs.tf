@@ -55,6 +55,7 @@ output "records" {
         }
         : null
       )
+      health_check_id = record.health_check_id == "" ? null : record.health_check_id
     }
   }
 }
