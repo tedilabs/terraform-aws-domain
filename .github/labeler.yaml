@@ -1,23 +1,8 @@
 # Modules
-":floppy_disk: amazon-issued-cert":
-- changed-files:
-  - any-glob-to-any-file:
-    - modules/amazon-issued-cert/**/*
-
 ":floppy_disk: cidr-collection":
 - changed-files:
   - any-glob-to-any-file:
     - modules/cidr-collection/**/*
-
-":floppy_disk: imported-cert":
-- changed-files:
-  - any-glob-to-any-file:
-    - modules/imported-cert/**/*
-
-":floppy_disk: private-ca-issued-cert":
-- changed-files:
-  - any-glob-to-any-file:
-    - modules/private-ca-issued-cert/**/*
 
 ":floppy_disk: private-zone":
 - changed-files:

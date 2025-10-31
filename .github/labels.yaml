@@ -41,17 +41,8 @@
 
 # Modules
 - color: "fbca04"
-  description: "This issue or pull request is related to amazon-issued-cert module."
-  name: ":floppy_disk: amazon-issued-cert"
-- color: "fbca04"
   description: "This issue or pull request is related to cidr-collection module."
   name: ":floppy_disk: cidr-collection"
-- color: "fbca04"
-  description: "This issue or pull request is related to imported-cert module."
-  name: ":floppy_disk: imported-cert"
-- color: "fbca04"
-  description: "This issue or pull request is related to private-ca-issued-cert module."
-  name: ":floppy_disk: private-ca-issued-cert"
 - color: "fbca04"
   description: "This issue or pull request is related to private-zone module."
   name: ":floppy_disk: private-zone"
