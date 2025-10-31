@@ -6,10 +6,7 @@
 
 Terraform module which creates Route53 related resources on AWS.
 
-- [amazon-issued-cert](./modules/amazon-issued-cert)
 - [cidr-collection](./modules/cidr-collection/)
-- [imported-cert](./modules/imported-cert)
-- [private-ca-issued-cert](./modules/private-ca-issued-cert)
 - [private-zone](./modules/private-zone)
 - [public-zone](./modules/public-zone)
 - [record-set](./modules/record-set)
@@ -34,10 +31,6 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
     - Inbound Endpoint
     - Outbound Endpoint (comming soon!)
     - Query Logging Configuration
-- **ACM (AWS Certificate Manager)**
-  - Amazon issued Certificate
-  - Private CA issued Certificate
-  - Imported Certificate
 
 
 ## Examples
