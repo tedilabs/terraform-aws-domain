@@ -53,6 +53,11 @@ output "cross_account_vpc_association_authorizations" {
   ]
 }
 
+output "profile_associations" {
+  description = "A list of Route53 Profile associations with the Hosted Zone."
+  value       = aws_route53profiles_resource_association.this
+}
+
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(

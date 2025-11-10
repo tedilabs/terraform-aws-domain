@@ -67,6 +67,22 @@ variable "secondary_vpc_associations" {
   nullable = false
 }
 
+variable "profile_associations" {
+  description = <<EOF
+  (Optional) A list of configurations to associate Route53 Profiles with the Hosted Zone. Each block of `profile_associations` as defined below.
+    (Required) `name` - The name of the resource association with the Route53 profile.
+    (Optional) `region` - The region of the Route53 profile. Defaults to the region of the AWS provider.
+    (Required) `profile` - The ID of the Route53 profile to associate with.
+  EOF
+  type = list(object({
+    name    = string
+    region  = optional(string)
+    profile = string
+  }))
+  default  = []
+  nullable = false
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to add to all resources."
   type        = map(string)

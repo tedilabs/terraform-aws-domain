@@ -5,6 +5,7 @@ This module creates following resources.
 - `aws_route53_zone`
 - `aws_route53_zone_vpc_association` (optional)
 - `aws_route53_vpc_association_authorization` (optional)
+- `aws_route53profiles_resource_association` (optional)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -33,6 +34,7 @@ This module creates following resources.
 | [aws_route53_vpc_association_authorization.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_vpc_association_authorization) | resource |
 | [aws_route53_zone.private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_route53_zone_association.secondary](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone_association) | resource |
+| [aws_route53profiles_resource_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
 
 ## Inputs
 
@@ -45,6 +47,7 @@ This module creates following resources.
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | (Optional) Whether to destroy all records (possibly managed outside of Terraform) in the zone when destroying the zone. Defaults to `false`. | `bool` | `false` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | (Optional) The namespace of the Hosted Zone. Just for categorising overlapped hosted zones. Defaults to `default`. | `string` | `"default"` | no |
+| <a name="input_profile_associations"></a> [profile\_associations](#input\_profile\_associations) | (Optional) A list of configurations to associate Route53 Profiles with the Hosted Zone. Each block of `profile_associations` as defined below.<br/>    (Required) `name` - The name of the resource association with the Route53 profile.<br/>    (Optional) `region` - The region of the Route53 profile. Defaults to the region of the AWS provider.<br/>    (Required) `profile` - The ID of the Route53 profile to associate with. | <pre>list(object({<br/>    name    = string<br/>    region  = optional(string)<br/>    profile = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Optional) A configurations of Resource Group for this module. `resource_group` as defined below.<br/>    (Optional) `enabled` - Whether to create Resource Group to find and group AWS resources which are created by this module. Defaults to `true`.<br/>    (Optional) `name` - The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. If not provided, a name will be generated using the module name and instance name.<br/>    (Optional) `description` - The description of Resource Group. Defaults to `Managed by Terraform.`. | <pre>object({<br/>    enabled     = optional(bool, true)<br/>    name        = optional(string, "")<br/>    description = optional(string, "Managed by Terraform.")<br/>  })</pre> | `{}` | no |
 | <a name="input_secondary_vpc_associations"></a> [secondary\_vpc\_associations](#input\_secondary\_vpc\_associations) | (Optional) A list of secondary VPCs to associate with the private hosted zone. Each<br/>  block of `secondary_vpc_associations` as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>list(object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A map of tags to add to all resources. | `map(string)` | `{}` | no |
@@ -61,6 +64,7 @@ This module creates following resources.
 | <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers) | A list of name servers in associated (or default) delegation set. |
 | <a name="output_namespace"></a> [namespace](#output\_namespace) | The namespace of the Hosted Zone. |
 | <a name="output_primary_name_server"></a> [primary\_name\_server](#output\_primary\_name\_server) | The Route 53 name server that created the SOA record. |
+| <a name="output_profile_associations"></a> [profile\_associations](#output\_profile\_associations) | A list of Route53 Profile associations with the Hosted Zone. |
 | <a name="output_resource_group"></a> [resource\_group](#output\_resource\_group) | The resource group created to manage resources in this module. |
 | <a name="output_vpc_associations"></a> [vpc\_associations](#output\_vpc\_associations) | A list of associated VPCs with a private Hosted Zone. |
 <!-- END_TF_DOCS -->
