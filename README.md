@@ -8,6 +8,7 @@ Terraform module which creates Route53 related resources on AWS.
 
 - [cidr-collection](./modules/cidr-collection/)
 - [private-zone](./modules/private-zone)
+- [profile](./modules/profile)
 - [public-zone](./modules/public-zone)
 - [record-set](./modules/record-set)
 - [registered-domain](./modules/registered-domain)
@@ -27,6 +28,8 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
     - Private Hosted Zone
     - Record Set
     - CIDR Collection
+  - Profile
+    - Profile
   - Resolver
     - Inbound Endpoint
     - Outbound Endpoint (comming soon!)

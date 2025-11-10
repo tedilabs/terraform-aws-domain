@@ -10,6 +10,10 @@ locals {
 }
 
 
+###################################################
+# Resource Group
+###################################################
+
 module "resource_group" {
   source  = "tedilabs/misc/aws//modules/resource-group"
   version = "~> 0.12.0"

@@ -9,6 +9,11 @@
   - any-glob-to-any-file:
     - modules/private-zone/**/*
 
+":floppy_disk: profile":
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/profile/**/*
+
 ":floppy_disk: public-zone":
 - changed-files:
   - any-glob-to-any-file:
