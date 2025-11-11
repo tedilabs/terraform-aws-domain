@@ -55,7 +55,23 @@ output "cross_account_vpc_association_authorizations" {
 
 output "profile_associations" {
   description = "A list of Route53 Profile associations with the Hosted Zone."
-  value       = aws_route53profiles_resource_association.this
+  value = [
+    for assoc in aws_route53profiles_resource_association.this : {
+      id       = assoc.id
+      name     = assoc.name
+      owner_id = assoc.owner_id
+      status   = assoc.status
+      profile = {
+        id     = assoc.profile_id
+        region = assoc.region
+      }
+      resource = {
+        type       = assoc.resource_type
+        arn        = assoc.resource_arn
+        properties = assoc.resource_properties
+      }
+    }
+  ]
 }
 
 output "resource_group" {
