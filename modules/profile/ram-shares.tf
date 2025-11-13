@@ -1,10 +1,18 @@
+locals {
+  ram_share_name_prefix = join(".", [
+    "route53-profile",
+    replace(var.name, "/[^a-zA-Z0-9_\\.-]/", "-"),
+  ])
+}
+
+
 ###################################################
 # Resource Sharing by RAM (Resource Access Manager)
 ###################################################
 
 module "share" {
   source  = "tedilabs/organization/aws//modules/ram-share"
-  version = "~> 0.4.0"
+  version = "~> 0.5.0"
 
   for_each = {
     for share in var.shares :
@@ -13,11 +21,11 @@ module "share" {
 
   region = aws_route53profiles_profile.this.region
 
-  name = "route53-profile.${var.name}.${each.key}"
+  name = "${local.ram_share_name_prefix}.${each.key}"
 
-  resources = [
-    aws_route53profiles_profile.this.arn,
-  ]
+  resources = {
+    (var.name) = aws_route53profiles_profile.this.arn,
+  }
   permissions = each.value.permissions
 
   external_principals_allowed = each.value.external_principals_allowed
