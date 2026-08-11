@@ -10,7 +10,7 @@ provider "aws" {
 module "zone" {
   source = "../../modules/public-zone/"
   # source  = "tedilabs/domain/aws//modules/public-zone"
-  # version = "~> 0.2.0"
+  # version = "~> 1.0.0"
 
   name = "mycompany.com"
 

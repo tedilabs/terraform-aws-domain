@@ -14,7 +14,7 @@ data "aws_vpc" "default" {
 module "zone" {
   source = "../../modules/private-zone/"
   # source  = "tedilabs/domain/aws//modules/private-zone"
-  # version = "~> 0.2.0"
+  # version = "~> 1.0.0"
 
   name = "mycompany.com"
 
