@@ -33,6 +33,23 @@ output "status_message" {
   value       = aws_route53profiles_profile.this.status_message
 }
 
+output "resolver_query_log_configurations" {
+  description = "A list of Route53 Resolver query logging configuration associations with the Profile."
+  value = [
+    for assoc in aws_route53profiles_resource_association.resolver_query_log_configurations : {
+      id       = assoc.id
+      name     = assoc.name
+      owner_id = assoc.owner_id
+      status   = assoc.status
+      resource = {
+        type       = assoc.resource_type
+        arn        = assoc.resource_arn
+        properties = assoc.resource_properties
+      }
+    }
+  ]
+}
+
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(
