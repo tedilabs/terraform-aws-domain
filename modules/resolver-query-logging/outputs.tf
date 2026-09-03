@@ -28,6 +28,27 @@ output "vpc_associations" {
   value       = keys(aws_route53_resolver_query_log_config_association.this)
 }
 
+output "profile_associations" {
+  description = "A list of Route53 Profile associations with the query logging configuration."
+  value = [
+    for assoc in aws_route53profiles_resource_association.this : {
+      id       = assoc.id
+      name     = assoc.name
+      owner_id = assoc.owner_id
+      status   = assoc.status
+      profile = {
+        id     = assoc.profile_id
+        region = assoc.region
+      }
+      resource = {
+        type       = assoc.resource_type
+        arn        = assoc.resource_arn
+        properties = assoc.resource_properties
+      }
+    }
+  ]
+}
+
 output "destination" {
   description = "The ARN of the resource that Route 53 Resolver send query logs. This can be S3 bucket, CloudWatch Logs log group, or Kinesis Data Firehose delivery stream."
   value       = aws_route53_resolver_query_log_config.this.destination_arn
