@@ -22,6 +22,20 @@ variable "vpc_associations" {
   nullable    = false
 }
 
+variable "profile_associations" {
+  description = <<EOF
+  (Optional) A list of configurations to associate Route53 Profiles with the query logging configuration. Each block of `profile_associations` as defined below.
+    (Required) `name` - The name of the resource association with the Route53 profile.
+    (Required) `profile` - The ID of the Route53 profile to associate with.
+  EOF
+  type = list(object({
+    name    = string
+    profile = string
+  }))
+  default  = []
+  nullable = false
+}
+
 variable "tags" {
   description = "(Optional) A map of tags to add to all resources."
   type        = map(string)

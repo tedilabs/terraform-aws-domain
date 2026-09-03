@@ -4,6 +4,7 @@ This module creates following resources.
 
 - `aws_route53_resolver_query_log_config`
 - `aws_route53_resolver_query_log_config_association` (optional)
+- `aws_route53profiles_resource_association` (optional)
 - `aws_ram_resource_share` (optional)
 - `aws_ram_principal_association` (optional)
 - `aws_ram_resource_association` (optional)
@@ -27,7 +28,7 @@ This module creates following resources.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
-| <a name="module_share"></a> [share](#module\_share) | tedilabs/organization/aws//modules/ram-share | ~> 0.5.0 |
+| <a name="module_share"></a> [share](#module\_share) | tedilabs/organization/aws//modules/ram-share | ~> 0.7.0 |
 
 ## Resources
 
@@ -35,6 +36,7 @@ This module creates following resources.
 |------|------|
 | [aws_route53_resolver_query_log_config.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_query_log_config) | resource |
 | [aws_route53_resolver_query_log_config_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_resolver_query_log_config_association) | resource |
+| [aws_route53profiles_resource_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
 
 ## Inputs
 
@@ -43,6 +45,7 @@ This module creates following resources.
 | <a name="input_destination"></a> [destination](#input\_destination) | (Required) The ARN of the resource that you want Route 53 Resolver to send query logs. You can send query logs to an S3 bucket, a CloudWatch Logs log group, or a Kinesis Data Firehose delivery stream. | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Route 53 Resolver query logging configuration. | `string` | n/a | yes |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
+| <a name="input_profile_associations"></a> [profile\_associations](#input\_profile\_associations) | (Optional) A list of configurations to associate Route53 Profiles with the query logging configuration. Each block of `profile_associations` as defined below.<br/>    (Required) `name` - The name of the resource association with the Route53 profile.<br/>    (Required) `profile` - The ID of the Route53 profile to associate with. | <pre>list(object({<br/>    name    = string<br/>    profile = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Optional) The region in which to create the module resources. If not provided, the module resources will be created in the provider's configured region. | `string` | `null` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Optional) A configurations of Resource Group for this module. `resource_group` as defined below.<br/>    (Optional) `enabled` - Whether to create Resource Group to find and group AWS resources which are created by this module. Defaults to `true`.<br/>    (Optional) `name` - The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. If not provided, a name will be generated using the module name and instance name.<br/>    (Optional) `description` - The description of Resource Group. Defaults to `Managed by Terraform.`. | <pre>object({<br/>    enabled     = optional(bool, true)<br/>    name        = optional(string, "")<br/>    description = optional(string, "Managed by Terraform.")<br/>  })</pre> | `{}` | no |
 | <a name="input_shares"></a> [shares](#input\_shares) | (Optional) A list of resource shares via RAM (Resource Access Manager). | <pre>list(object({<br/>    name = optional(string)<br/><br/>    permissions = optional(set(string), ["AWSRAMDefaultPermissionResolverQueryLogConfig"])<br/><br/>    external_principals_allowed = optional(bool, false)<br/>    principals                  = optional(set(string), [])<br/><br/>    tags = optional(map(string), {})<br/>  }))</pre> | `[]` | no |
@@ -58,6 +61,7 @@ This module creates following resources.
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Route 53 Resolver query logging configuration. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the Route 53 Resolver query logging configuration. |
 | <a name="output_owner_id"></a> [owner\_id](#output\_owner\_id) | The AWS Account ID the account that created the query logging configuration. |
+| <a name="output_profile_associations"></a> [profile\_associations](#output\_profile\_associations) | A list of Route53 Profile associations with the query logging configuration. |
 | <a name="output_region"></a> [region](#output\_region) | The AWS region this module resources resides in. |
 | <a name="output_resource_group"></a> [resource\_group](#output\_resource\_group) | The resource group created to manage resources in this module. |
 | <a name="output_sharing"></a> [sharing](#output\_sharing) | The configuration for sharing of the Route53 Resolver query logging configuration.<br/>    `status` - An indication of whether the query logging configuration is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM). Values are `NOT_SHARED`, `SHARED_BY_ME` or `SHARED_WITH_ME`.<br/>    `shares` - The list of resource shares via RAM (Resource Access Manager). |
