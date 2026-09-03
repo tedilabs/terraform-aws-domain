@@ -31,6 +31,7 @@ This module creates following resources.
 | Name | Type |
 |------|------|
 | [aws_route53profiles_profile.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_profile) | resource |
+| [aws_route53profiles_resource_association.dns_firewall_rule_groups](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
 | [aws_route53profiles_resource_association.resolver_query_log_configurations](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
 
 ## Inputs
@@ -38,6 +39,7 @@ This module creates following resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------| :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Route53 Profile. | `string` | n/a | yes |
+| <a name="input_dns_firewall_rule_groups"></a> [dns\_firewall\_rule\_groups](#input\_dns\_firewall\_rule\_groups) | (Optional) A list of configurations to associate Route53 Resolver DNS Firewall rule groups with the Profile. Each block of `dns_firewall_rule_groups` as defined below.<br/>    (Required) `name` - The name of the resource association with the DNS Firewall rule group.<br/>    (Required) `dns_firewall_rule_group` - The ARN of the Route53 Resolver DNS Firewall rule group to associate with.<br/>    (Required) `priority` - The setting that determines the processing order of the rule group among the rule groups associated with the Profile. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. Valid values are between `100` and `9900`. | <pre>list(object({<br/>    name                    = string<br/>    dns_firewall_rule_group = string<br/>    priority                = number<br/>  }))</pre> | `[]` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
 | <a name="input_region"></a> [region](#input\_region) | (Optional) The region in which to create the module resources. If not provided, the module resources will be created in the provider's configured region. | `string` | `null` | no |
 | <a name="input_resolver_query_log_configurations"></a> [resolver\_query\_log\_configurations](#input\_resolver\_query\_log\_configurations) | (Optional) A list of configurations to associate Route53 Resolver query logging configurations with the Profile. Each block of `resolver_query_log_configurations` as defined below.<br/>    (Required) `name` - The name of the resource association with the query logging configuration.<br/>    (Required) `resolver_query_log_configuration` - The ARN of the Route53 Resolver query logging configuration to associate with. | <pre>list(object({<br/>    name                             = string<br/>    resolver_query_log_configuration = string<br/>  }))</pre> | `[]` | no |
@@ -51,6 +53,7 @@ This module creates following resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the Route53 Profile. |
+| <a name="output_dns_firewall_rule_groups"></a> [dns\_firewall\_rule\_groups](#output\_dns\_firewall\_rule\_groups) | A list of Route53 Resolver DNS Firewall rule group associations with the Profile. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Route53 Profile. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the Route53 Profile. |
 | <a name="output_owner_id"></a> [owner\_id](#output\_owner\_id) | The AWS Account ID the account that created the Route53 Profile. |
