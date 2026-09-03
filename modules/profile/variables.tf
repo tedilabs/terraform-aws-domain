@@ -25,6 +25,30 @@ variable "resolver_query_log_configurations" {
   nullable = false
 }
 
+variable "dns_firewall_rule_groups" {
+  description = <<EOF
+  (Optional) A list of configurations to associate Route53 Resolver DNS Firewall rule groups with the Profile. Each block of `dns_firewall_rule_groups` as defined below.
+    (Required) `name` - The name of the resource association with the DNS Firewall rule group.
+    (Required) `dns_firewall_rule_group` - The ARN of the Route53 Resolver DNS Firewall rule group to associate with.
+    (Required) `priority` - The setting that determines the processing order of the rule group among the rule groups associated with the Profile. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. Valid values are between `100` and `9900`.
+  EOF
+  type = list(object({
+    name                    = string
+    dns_firewall_rule_group = string
+    priority                = number
+  }))
+  default  = []
+  nullable = false
+
+  validation {
+    condition = alltrue([
+      for rule_group in var.dns_firewall_rule_groups :
+      rule_group.priority >= 100 && rule_group.priority <= 9900
+    ])
+    error_message = "Valid values for `priority` are between `100` and `9900`."
+  }
+}
+
 variable "timeouts" {
   description = <<EOF
   (Optional) How long to wait for the Profile to be created/read/deleted.
