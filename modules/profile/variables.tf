@@ -11,37 +11,6 @@ variable "name" {
   nullable    = false
 }
 
-variable "resource_associations" {
-  description = <<EOF
-  (Optional) A list of Route53 resource associations for the Profile. Each value of `resource_associations` as defined below.
-    (Required) `name` - The name of the Profile Resource Association.
-    (Required) `resource_arn` - The ARN of the resource to be associated with the profile.
-    (Optional) `resource_properties` - Resource properties for the resource to be associated with the profile.
-    (Optional) `timeouts` - A configuration of timeouts for the resource association. `timeouts` as defined below.
-      (Optional) `create` - Timeout for creating the resource association.
-      (Optional) `delete` - Timeout for deleting the resource association.
-  EOF
-  type = list(object({
-    name                = string
-    resource_arn        = string
-    resource_properties = optional(string)
-    timeouts = optional(object({
-      create = optional(string)
-      delete = optional(string)
-    }))
-  }))
-  default  = []
-  nullable = false
-
-  validation {
-    condition = alltrue([
-      for association in var.resource_associations :
-      can(regex("^(?![0-9]+$)([a-zA-Z0-9\\-_' ']+)$", association.name))
-    ])
-    error_message = "Resource association names must match the regex pattern: (?!^[0-9]+$)([a-zA-Z0-9\\-_' ']+)"
-  }
-}
-
 variable "resolver_query_log_configurations" {
   description = <<EOF
   (Optional) A list of configurations to associate Route53 Resolver query logging configurations with the Profile. Each block of `resolver_query_log_configurations` as defined below.
