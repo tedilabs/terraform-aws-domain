@@ -42,6 +42,20 @@ variable "resource_associations" {
   }
 }
 
+variable "resolver_query_log_configurations" {
+  description = <<EOF
+  (Optional) A list of configurations to associate Route53 Resolver query logging configurations with the Profile. Each block of `resolver_query_log_configurations` as defined below.
+    (Required) `name` - The name of the resource association with the query logging configuration.
+    (Required) `resolver_query_log_configuration` - The ARN of the Route53 Resolver query logging configuration to associate with.
+  EOF
+  type = list(object({
+    name                             = string
+    resolver_query_log_configuration = string
+  }))
+  default  = []
+  nullable = false
+}
+
 variable "timeouts" {
   description = <<EOF
   (Optional) How long to wait for the Profile to be created/read/deleted.
