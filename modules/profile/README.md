@@ -9,27 +9,27 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.20.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.12 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 | <a name="module_share"></a> [share](#module\_share) | tedilabs/organization/aws//modules/ram-share | ~> 0.8.1 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53profiles_profile.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_profile) | resource |
 | [aws_route53profiles_resource_association.dns_firewall_rule_groups](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
 | [aws_route53profiles_resource_association.resolver_query_log_configurations](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53profiles_resource_association) | resource |
@@ -37,7 +37,7 @@ This module creates following resources.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------| :------: |
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Route53 Profile. | `string` | n/a | yes |
 | <a name="input_dns_firewall_rule_groups"></a> [dns\_firewall\_rule\_groups](#input\_dns\_firewall\_rule\_groups) | (Optional) A list of configurations to associate Route53 Resolver DNS Firewall rule groups with the Profile. Each block of `dns_firewall_rule_groups` as defined below.<br/>    (Required) `name` - The name of the resource association with the DNS Firewall rule group.<br/>    (Required) `dns_firewall_rule_group` - The ARN of the Route53 Resolver DNS Firewall rule group to associate with.<br/>    (Required) `priority` - The setting that determines the processing order of the rule group among the rule groups associated with the Profile. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. Valid values are between `100` and `9900`. | <pre>list(object({<br/>    name                    = string<br/>    dns_firewall_rule_group = string<br/>    priority                = number<br/>  }))</pre> | `[]` | no |
 | <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
@@ -51,7 +51,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the Route53 Profile. |
 | <a name="output_dns_firewall_rule_groups"></a> [dns\_firewall\_rule\_groups](#output\_dns\_firewall\_rule\_groups) | A list of Route53 Resolver DNS Firewall rule group associations with the Profile. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the Route53 Profile. |

@@ -8,15 +8,15 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.18.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.12 |
 
 ## Modules
 
@@ -25,14 +25,14 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53_record.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
 | [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the record. Enter a fully qualified domain name, for example, `www.example.com`. You can use the asterisk (*) wildcard to replace the leftmost label in a domain name, for example, `*.example.com`. | `string` | n/a | yes |
 | <a name="input_type"></a> [type](#input\_type) | (Required) The DNS record type. Valid values are `A`, `AAAA`, `CAA`, `CNAME`, `DS`, `HTTPS`, `MX`, `NAPTR`, `NS`, `PTR`, `SOA`, `SPF`, `SRV`, `SSHFP`, `SVCB`, `TLSA` and `TXT`. | `string` | n/a | yes |
 | <a name="input_zone"></a> [zone](#input\_zone) | (Required) The ID of the hosted zone to contain this record set. | `string` | n/a | yes |
@@ -44,7 +44,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_fqdn"></a> [fqdn](#output\_fqdn) | The FQDN (Fully-qualified Domain Name) of the record. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the record. |
 | <a name="output_records"></a> [records](#output\_records) | A list of records for the record set. Each item of `records` as defined below.<br/>    `id` - A unique ID to differentiate this record from other records with the same domain name and type.<br/>    `value` - A configuration for non-alias record with a list of the record values.<br/>    `alias` - A configuration for alias record. Conflicts with `value`. `alias` as defined below.<br/>      `name` - DNS domain name for a CloudFront distribution, S3 bucket, ELB, or another record set in this hosted zone.<br/>      `zone` - Hosted zone ID for a CloudFront distribution, S3 bucket, ELB, or Route 53 hosted zone.<br/>      `evaluate_target_health` - Whether to respond to DNS queries using this record by checking the health of the alias target. |

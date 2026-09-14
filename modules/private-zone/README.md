@@ -11,26 +11,26 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.13.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.12 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53_vpc_association_authorization.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_vpc_association_authorization) | resource |
 | [aws_route53_zone.private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone) | resource |
 | [aws_route53_zone_association.secondary](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_zone_association) | resource |
@@ -39,7 +39,7 @@ This module creates following resources.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the Hosted Zone. | `string` | n/a | yes |
 | <a name="input_primary_vpc_association"></a> [primary\_vpc\_association](#input\_primary\_vpc\_association) | (Required) The Primary VPC to associate with the private hosted zone. `primary_vpc_association` block as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to associate with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to associate. Defaults to the region of the AWS provider. | <pre>object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  })</pre> | n/a | yes |
 | <a name="input_cross_account_vpc_association_authorizations"></a> [cross\_account\_vpc\_association\_authorizations](#input\_cross\_account\_vpc\_association\_authorizations) | (Optional) A list of authorizations for a VPC in a peer account to be associated with the Route53 Hosted Zone. Each block of `cross_account_vpc_association_authorizations` as defined below.<br/>    (Required) `vpc_id` - The ID of the VPC to authorize for association with the private Hosted Zone.<br/>    (Optional) `region` - The region of the VPC to authorize. Defaults to the region of the AWS provider. | <pre>list(object({<br/>    region = optional(string)<br/>    vpc_id = string<br/>  }))</pre> | `[]` | no |
@@ -55,7 +55,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The Amazon Resource Name (ARN) of the Hosted Zone. |
 | <a name="output_cross_account_vpc_association_authorizations"></a> [cross\_account\_vpc\_association\_authorizations](#output\_cross\_account\_vpc\_association\_authorizations) | A list of authorized VPCs in cross accounts to associate with a private Hosted Zone. |
 | <a name="output_description"></a> [description](#output\_description) | A description for the Hosted Zone. |
