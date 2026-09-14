@@ -8,32 +8,32 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.12 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.13.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.12 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_route53domains_registered_domain.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53domains_registered_domain) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the registred domain. | `string` | n/a | yes |
 | <a name="input_admin_contact"></a> [admin\_contact](#input\_admin\_contact) | (Optional) The configuration of the domain administrative contact. `admin_contact` as defined below.<br/>    (Optional) `type` - Whether the contact is a person, company, association, or public organization.  Valid values are `PERSON`, `COMPANY`, `ASSOCIATION`, or `PUBLIC_BODY`, `RESELLER`. Defaults to `PERSON`.<br/>    (Optional) `organization` - The name of the organization for contact types other than `PERSON`.<br/>    (Optional) `first_name` - First name of contact.<br/>    (Optional) `last_name` - Last name of contact.<br/>    (Optional) `email` - The email address of the contact.<br/>    (Optional) `phone` - The phone number of the contact. Phone number must be specified in the format `+[country dialing code].[number including any area code]`.<br/>    (Optional) `fax` - The fax number of the contact. Fax number must be specified in the format `+[country dialing code].[number including any area code]`.<br/><br/>    (Optional) `country_code` - The ISO-3166 two-letter country code for the contact address.<br/>    (Optional) `state` - The state or province of the contact's city.<br/>    (Optional) `city` - The city of the contact's address.<br/>    (Optional) `address_line_1` - The first line of the contact address.<br/>    (Optional) `address_line_2` - The second line of the contact address, if any.<br/>    (Optional) `postal_code` - The zip or postal code of the contact's address.<br/><br/>    (Optional) `extra_params` - A key-value map of parameters required by certain top-level domains.<br/>    (Optional) `privacy_protection_enabled` - Whether domain contact information is concealed from WHOIS queries. Defaults to `true`. | <pre>object({<br/>    type         = optional(string, "PERSON")<br/>    organization = optional(string)<br/>    first_name   = optional(string)<br/>    last_name    = optional(string)<br/>    email        = optional(string)<br/>    phone        = optional(string)<br/>    fax          = optional(string)<br/><br/>    country_code   = optional(string)<br/>    state          = optional(string)<br/>    city           = optional(string)<br/>    address_line_1 = optional(string)<br/>    address_line_2 = optional(string)<br/>    postal_code    = optional(string)<br/><br/>    extra_params               = optional(map(string), {})<br/>    privacy_protection_enabled = optional(bool, true)<br/>  })</pre> | `{}` | no |
 | <a name="input_auto_renew_enabled"></a> [auto\_renew\_enabled](#input\_auto\_renew\_enabled) | (Optional) Whether the domain registration is set to renew automatically. Defaults to `true`. | `bool` | `true` | no |
@@ -49,7 +49,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_abuse_contact"></a> [abuse\_contact](#output\_abuse\_contact) | The contact informations to report incorrect contact information for a domain, to report that the domain is being used to send spam, to report that someone is cybersquatting on a domain name, or report some other type of abuse. |
 | <a name="output_admin_contact"></a> [admin\_contact](#output\_admin\_contact) | The configuration of the domain administrative contact. |
 | <a name="output_auto_renew_enabled"></a> [auto\_renew\_enabled](#output\_auto\_renew\_enabled) | Whether the domain registration is set to renew automatically. |
