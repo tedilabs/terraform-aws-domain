@@ -1,3 +1,13 @@
+locals {
+  metadata = {
+    package = "terraform-aws-domain"
+    version = trimspace(file("${path.module}/../../VERSION"))
+    module  = basename(path.module)
+    name    = var.name
+  }
+}
+
+
 data "aws_route53_zone" "this" {
   zone_id = var.zone
 }
