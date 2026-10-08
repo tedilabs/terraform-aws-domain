@@ -3,7 +3,7 @@ locals {
     package = "terraform-aws-domain"
     version = trimspace(file("${path.module}/../../VERSION"))
     module  = basename(path.module)
-    name    = var.name
+    name    = "${var.zone}/${var.name}/${var.type}"
   }
 }
 
