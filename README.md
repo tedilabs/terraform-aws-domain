@@ -14,7 +14,7 @@ Terraform module which creates Route53 related resources on AWS.
 - [registered-domain](./modules/registered-domain)
 
 
-The `resolver-inbound-endpoint` and `resolver-query-logging` modules have moved to [terraform-aws-route53-resolver](https://github.com/tedilabs/terraform-aws-route53-resolver). Update their module source from `tedilabs/domain/aws` to `tedilabs/route53-resolver/aws`, keeping the same `//modules/<module-name>` suffix.
+The `resolver-inbound-endpoint` and `resolver-query-logging` modules have moved to [terraform-aws-route53-resolver](https://github.com/tedilabs/terraform-aws-route53-resolver). Update their module source from `tedilabs/domain/aws` to `tedilabs/route53-resolver/aws` and remove the `resolver-` prefix from the module path (`//modules/inbound-endpoint` or `//modules/query-logging`).
 
 
 ## Target AWS Services
