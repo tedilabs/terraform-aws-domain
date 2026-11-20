@@ -104,6 +104,10 @@ variable "records" {
     error_message = "Each record `id` must be unique in the record set."
   }
   validation {
+    condition     = var.routing_policy != "SIMPLE" || length(var.records) == 1
+    error_message = "Only one record can be provided when `routing_policy` is `SIMPLE`."
+  }
+  validation {
     condition = alltrue([
       for record in var.records :
       anytrue([
