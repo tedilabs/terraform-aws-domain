@@ -87,7 +87,7 @@ resource "aws_route53domains_registered_domain" "this" {
     address_line_2 = var.billing_contact.address_line_2
     zip_code       = var.billing_contact.postal_code
 
-    extra_params = var.admin_contact.extra_params
+    extra_params = var.billing_contact.extra_params
   }
   registrant_contact {
     contact_type      = var.registrant_contact.type
@@ -105,7 +105,7 @@ resource "aws_route53domains_registered_domain" "this" {
     address_line_2 = var.registrant_contact.address_line_2
     zip_code       = var.registrant_contact.postal_code
 
-    extra_params = var.admin_contact.extra_params
+    extra_params = var.registrant_contact.extra_params
   }
   tech_contact {
     contact_type      = var.technical_contact.type
@@ -123,7 +123,7 @@ resource "aws_route53domains_registered_domain" "this" {
     address_line_2 = var.technical_contact.address_line_2
     zip_code       = var.technical_contact.postal_code
 
-    extra_params = var.admin_contact.extra_params
+    extra_params = var.technical_contact.extra_params
   }
 
 
