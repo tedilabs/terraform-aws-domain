@@ -68,6 +68,23 @@ output "dns_firewall_rule_groups" {
   ]
 }
 
+output "resolver_rules" {
+  description = "A list of Route53 Resolver rule associations with the Profile."
+  value = [
+    for assoc in aws_route53profiles_resource_association.resolver_rules : {
+      id       = assoc.id
+      name     = assoc.name
+      owner_id = assoc.owner_id
+      status   = assoc.status
+      resource = {
+        type       = assoc.resource_type
+        arn        = assoc.resource_arn
+        properties = assoc.resource_properties
+      }
+    }
+  ]
+}
+
 output "resource_group" {
   description = "The resource group created to manage resources in this module."
   value = merge(

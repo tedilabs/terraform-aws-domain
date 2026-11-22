@@ -39,3 +39,24 @@ resource "aws_route53profiles_resource_association" "dns_firewall_rule_groups" {
     priority = each.value.priority
   })
 }
+
+
+###################################################
+# Associations with Resolver Rules
+###################################################
+
+# INFO: Not supported attributes
+# - `resource_properties`
+resource "aws_route53profiles_resource_association" "resolver_rules" {
+  for_each = {
+    for rule in var.resolver_rules :
+    rule.name => rule
+  }
+
+  region = aws_route53profiles_profile.this.region
+
+  profile_id = aws_route53profiles_profile.this.id
+
+  name         = each.key
+  resource_arn = each.value.resolver_rule
+}
