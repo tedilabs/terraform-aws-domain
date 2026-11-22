@@ -49,6 +49,20 @@ variable "dns_firewall_rule_groups" {
   }
 }
 
+variable "resolver_rules" {
+  description = <<EOF
+  (Optional) A list of configurations to associate Route53 Resolver rules with the Profile. Each block of `resolver_rules` as defined below.
+    (Required) `name` - The name of the resource association with the Resolver rule.
+    (Required) `resolver_rule` - The ARN of the Route53 Resolver rule to associate with.
+  EOF
+  type = list(object({
+    name          = string
+    resolver_rule = string
+  }))
+  default  = []
+  nullable = false
+}
+
 variable "timeouts" {
   description = <<EOF
   (Optional) How long to wait for the Profile to be created/read/deleted.
