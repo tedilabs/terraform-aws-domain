@@ -47,7 +47,7 @@ resource "aws_route53_record" "this" {
 
   ## Record
   # Non-alias Record
-  records = (var.type == "TXT"
+  records = (var.type == "TXT" && each.value.value != null
     ? [
       for v in each.value.value :
       join("\"\"", [
