@@ -1,5 +1,5 @@
 variable "name" {
-  description = "(Required) The name of the registred domain."
+  description = "(Required) The name of the registered domain."
   type        = string
   nullable    = false
 }

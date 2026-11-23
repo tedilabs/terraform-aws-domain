@@ -20,7 +20,7 @@ locals {
 
 
 ###################################################
-# Registred Domain in Route53 Registry
+# Registered Domain in Route53 Registry
 ###################################################
 
 # INFO: Not supported attributes
