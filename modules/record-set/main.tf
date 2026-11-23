@@ -73,7 +73,7 @@ resource "aws_route53_record" "this" {
   # lifecycle {
   #   precondition {
   #     condition     = endswith(each.key, var.name)
-  #     error_message = "The name of NS record must be end with the name of Hosted Zone."
+  #     error_message = "The name of NS record must end with the name of Hosted Zone."
   #   }
   # }
 }
